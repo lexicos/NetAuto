@@ -3,4 +3,4 @@ Behold this fictional network put together to support training and development o
 
 
  
- ![alt text](https://raw.githubusercontent.com/lexicos/NetSuto/master/Topology.jpeg)
+ ![alt text](https://raw.githubusercontent.com/lexicos/NetAuto/master/Topology.jpeg)
