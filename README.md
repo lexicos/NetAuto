@@ -4,3 +4,11 @@ Behold this fictional network put together to support training and development o
  
  ## Details
  
+ |Node| |IP Address|
+ |-----|-|---------|
+ |Bristol| | 192.168.16.10|
+ |Bruges| |192.168.16.20|
+ |Antwerp| |192.168.16.30|
+ |Bahrain| |192.168.16.40|
+ |Dehli| |192.168.16.50|
+ |Singapore| |192.168.16.60|
