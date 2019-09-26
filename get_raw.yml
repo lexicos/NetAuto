@@ -1,0 +1,7 @@
+---
+- hosts: iosv , iosxr
+  gather_facts: no
+
+  tasks:
+   - name: get interfaces
+     raw: "show ip interface brief"

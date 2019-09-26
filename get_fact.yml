@@ -1,0 +1,12 @@
+- name: "Demonstrate connecting to routers"
+  hosts: iosv
+  gather_facts: no
+
+  tasks:
+    ###
+    # Collect data
+
+    - name: Gather facts (ops)
+      ios_facts:
+      when: ansible_network_os == 'ios'
+
