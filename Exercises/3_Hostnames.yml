@@ -1,5 +1,6 @@
 #3 Hostnames:
 ---
+hosts:        #must be  dict for J2
   - 'almonds.brightslide.com'
   - 'brazil.brightslide.com'
   - 'dolphin.brightslide.com'
