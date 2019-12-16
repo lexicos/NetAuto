@@ -1,0 +1,10 @@
+#5 Create a list of users having: username,password privilege, autocommand (string)
+---
+- username: Geoff
+  password: secret_1
+- username: Gill
+  password: secret_2
+- username: Ryan
+  password: secret_3
+  privilage: 15
+  autocommand: "show tech-support"
