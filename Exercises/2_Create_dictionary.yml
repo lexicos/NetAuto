@@ -8,4 +8,4 @@ interfaces:
 - "gigabit 0/0/1"
 - "gigabit 0/0/2"
 
-interfaces2: ['tengig 0/0/1', 'tengig 0/0/2', 'tengig 0/0/3'] 
+interfaces: ['tengig 0/0/1', 'tengig 0/0/2', 'tengig 0/0/3'] 
