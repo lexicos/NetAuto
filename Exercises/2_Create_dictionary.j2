@@ -9,8 +9,3 @@ ip address {{loopback}} 255.255.255.255
 interface {{ifname}}
 no shutdown
 {% endfor %}
-{% for ifname in interfaces2 %}
-!
-interface {{ifname}}
-no shutdown
-{% endfor %}
