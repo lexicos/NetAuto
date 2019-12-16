@@ -1,6 +1,17 @@
 #7 Create a list of BGP neighbors as above, add optional attribute prefixes
 # (list of IP prefixes). Use inline list syntax for the prefixes attribute.
 ---
+neighbors:
+- address: 1.1.1.1
+  description: "Cross DC link"
+  asn: 65001
+
+- address: 1.1.1.2
+  description: "Inter DC link"
+  asn: 65002
+  state: down
+  policy: permitany
+  
 - ipaddress: 1.1.1.4
   description: "Inter DC link"
   asn: 65004
