@@ -1,5 +1,6 @@
 #5 Create a list of users having: username,password privilege, autocommand (string)
 ---
+users:               #Must but dict for J2
 - username: Geoff
   password: secret_1
 - username: Gill
