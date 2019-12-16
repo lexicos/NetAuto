@@ -1,14 +1,19 @@
 #6 Mandatory: address (IP address), description (string) and asn
 # Optional: state (present, absent or down) and policy (route mapname)
 ---
-- ipaddress: 1.1.1.1
+neighbors:
+
+- address: 1.1.1.1
   description: "Cross DC link"
   asn: 65001
 
-- ipaddress: 1.1.1.2
+- address: 1.1.1.2
   description: "Inter DC link"
   asn: 65002
-  state: present
+  state: down
   policy: permitany
 
-- { description: "Internat Link", ipaddress: 1.1.1.3, asn: 65003, state: absent, policy: denyany}
+- { description: "Internat Link", address: 1.1.1.3, asn: 65003, state: absent, policy: denyany}
+
+- address: 172.16.1.10
+  state: absent
