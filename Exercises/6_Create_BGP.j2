@@ -15,5 +15,7 @@ neighbor {{n.address}} route-map {{n.policy}} in
 {%     if n.state == "down" %}
 neighbor {{n.address}} shutdown
 {%     endif %}
+
 {%   endif %}
+
 {% endfor %}
