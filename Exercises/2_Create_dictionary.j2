@@ -11,3 +11,9 @@ interface {{ifname}}
 no shutdown
 {% endfor %}
 
+{% for ifname in interfaces2 %}
+!
+interface {{ifname}}
+no shutdown
+{% endfor %}
+
