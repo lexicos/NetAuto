@@ -19,11 +19,12 @@ syslog {{server}}
 {% for intf in interfaces %}
 interface {{intf.name}} 
  ip address {{intf.address}} {% if intf.mask %} {{intf.mask}} {% else %} 255.255.255.0 {% endif %}
- 
+
 {%      if intf.description is defined %}
  description {{intf.description}}
 {%      endif %}
  no shutdown
+ !
 {% endfor %}
 !
 {# BGP Configuration #}
