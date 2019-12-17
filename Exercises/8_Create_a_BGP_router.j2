@@ -1,0 +1,40 @@
+
+{# Common Device Configuration#}
+hostname {{hostname}}
+!
+ ip address {{loopback}} 255.255.255.255
+!
+banner motd #
+ {{banner}}
+ #
+!
+ {# Syslog server if present#}
+ {% if u.syslog is defined %}
+syslog {{u.syslog}}
+ {% endif %}
+!
+{# BGP Configuration #}
+{% for n in neighbours %}
+{%    if n.state == "absent" %}
+no neighbours {{n.address}}
+{%    else %}
+neighbour {{n.address}} remote-as {{n.asn}}
+neighbour {{n.address}} description {{n.description}}
+{%      if n.policy is defined %}
+neighbour {{n.address}} route-map {{n.policy}} in
+{%      endif %}
+{%      if n.state == "down" %}
+neighbour {{n.address}} shutdown
+{%      endif %}
+{%      if n.prefixes is defined %}
+neighbor {{n.address}} prefix-list bgp-neighbor-{{n.address}} in
+{%      endif %}
+{%    endfor %}
+
+{%   for n in neighbors if n.prefixes is defined and n.state != "absent" %}
+{%   for p in n.prefixes %}
+ip prefix-list bgp-neighbor-{{n.address}} seq {{loop.index}} permit {{p}}
+{%   endfor %}
+{% endfor %}
+
+
