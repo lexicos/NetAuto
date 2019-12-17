@@ -11,12 +11,9 @@ banner motd #
  {# Syslog server if present#}
 {% if syslog is defined %}
 {%   for s in syslog %}
-syslog {{s.syslog}}
+syslog {{s}}
 {%   endfor %}
 {% endif %}
-
-syslog {{syslog}}
- {% endif %}
 !
 {# BGP Configuration #}
 {% for n in neighbours %}
