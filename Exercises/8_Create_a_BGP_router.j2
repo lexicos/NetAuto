@@ -15,9 +15,18 @@ syslog {{server}}
 {%   endfor %}
 {% endif %}
 !
-{% for ifname in interfaces %}
-interfaces {{interfaces.name}} {{interfaces.address}} 
-interface {{ifname}}
+ {# Setup the interfaces #}
+{% for intf in interfaces %}
+ip address {{intf.address}} 
+{%    if intf.mask is defined %}
+interfaces {{intf.name}} 
+interfaces {{intf.name}} {{intf.mask}}
+{%    else %}
+interfaces {{intf.name}} 
+interfaces {{intf.name}} 255.255.255.0
+{%    if intf.description is defined %}
+interfaces {{intf.name}} description {{intf.description}}
+{%    endif %}
 no shutdown
 {% endfor %}
 !
@@ -40,6 +49,7 @@ neighbor {{n.address}} prefix-list bgp-neighbor-{{n.address}} in
 {% 	  endif %}
 {% endfor %}
 
+ {# set up the prefix lists for each neighbour #}
 {% for n in neighbors if n.prefixes is defined and n.state != "absent" %}
 {%   for p in n.prefixes %}
 ip prefix-list bgp-neighbor-{{n.address}} seq {{loop.index}} permit {{p}}
