@@ -20,14 +20,17 @@ syslog {{server}}
 {%    if intf.mask is defined %}
 interface {{intf.name}} 
  ip address {{intf.address}} {{intf.mask}}
+{%      if intf.description is defined %}
+interface {{intf.name}} description {{intf.description}}
+{%      endif %}
  no shutdown
 {%    else %}
 interface {{intf.name}} 
  ip address {{intf.address}} 255.255.255.0
- no shutdown
-{%    endif %}
-{%    if intf.description is defined %}
+{%      if intf.description is defined %}
 interface {{intf.name}} description {{intf.description}}
+{%      endif %}
+ no shutdown
 {%    endif %}
 {% endfor %}
 !
