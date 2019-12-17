@@ -9,7 +9,12 @@ banner motd #
 #
 !
  {# Syslog server if present#}
- {% if syslog is defined %}
+{% if syslog is defined %}
+{%   for s in syslog %}
+syslog {{s.syslog}}
+{%   endfor %}
+{% endif %}
+
 syslog {{syslog}}
  {% endif %}
 !
