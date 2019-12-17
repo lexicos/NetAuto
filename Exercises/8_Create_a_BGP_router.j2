@@ -24,10 +24,11 @@ interfaces {{intf.name}} {{intf.mask}}
 {%    else %}
 interfaces {{intf.name}} 
 interfaces {{intf.name}} 255.255.255.0
+{%    endif %}
 {%    if intf.description is defined %}
 interfaces {{intf.name}} description {{intf.description}}
-{%    endif %}
 no shutdown
+{%    endif %}
 {% endfor %}
 !
 {# BGP Configuration #}
