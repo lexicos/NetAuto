@@ -1,5 +1,3 @@
-2_Create_dictionary.j2
-
 hostname {{hostname}}
 !
 interface loopback 0
@@ -10,7 +8,6 @@ ip address {{loopback}} 255.255.255.255
 interface {{ifname}}
 no shutdown
 {% endfor %}
-
 {% for ifname in interfaces2 %}
 !
 interface {{ifname}}
