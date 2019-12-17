@@ -18,14 +18,14 @@ syslog {{server}}
  {# Setup the interfaces #}
 {% for intf in interfaces %}
 {%    if intf.mask is defined %}
-interfaces {{intf.name}} 
-ip address {{intf.address}} {{intf.mask}}
-{%    else %}
-interfaces {{intf.name}} 
-interfaces {{intf.name}} 
-ip address {{intf.address}} 255.255.255.0
-{%    endif %}
+interface {{intf.name}} 
+ip addres {{intf.address}} {{intf.mask}}
 no shutdown
+{%    else %}
+interface {{intf.name}} 
+ip addres {{intf.address}} 255.255.255.0
+no shutdown
+{%    endif %}
 {%    if intf.description is defined %}
 interfaces {{intf.name}} description {{intf.description}}
 {%    endif %}
