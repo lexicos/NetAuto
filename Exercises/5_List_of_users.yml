@@ -7,5 +7,5 @@ users:               #Must but dict for J2
   password: secret_2
 - username: Ryan
   password: secret_3
-  privilage: 15
+  privilege: 15
   autocommand: "show tech-support"
