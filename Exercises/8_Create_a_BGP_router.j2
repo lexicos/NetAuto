@@ -9,8 +9,8 @@ banner motd #
  #
 !
  {# Syslog server if present#}
- {% if u.syslog is defined %}
-syslog {{u.syslog}}
+ {% if syslog is defined %}
+syslog {{syslog}}
  {% endif %}
 !
 {# BGP Configuration #}
