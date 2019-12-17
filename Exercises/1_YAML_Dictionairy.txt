@@ -1,0 +1,15 @@
+--- Rendering template 1_YAML_Dictionairy.j2 ---
+hostname Host1
+!
+ ip address 1.1.1.1
+!
+banner motd #
+This is the 
+first of 
+six lines
+all including
+newline 
+breaks
+
+#
+ 

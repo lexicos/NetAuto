@@ -1,0 +1,57 @@
+
+{# Common Device Configuration#}
+hostname {{hostname}}
+!
+ ip address {{loopback}} 255.255.255.255
+!
+banner motd #
+{{banner}}
+#
+!
+ {# Syslog server if present#}
+{% if syslog is defined %}
+{%   for server in syslog %}
+syslog {{server}}
+{%   endfor %}
+{% endif %}
+!
+ {# Setup the interfaces #}
+{% for intf in interfaces %}
+interface {{intf.name}} 
+ ip address {{intf.address}} {% if intf.mask %} {{intf.mask}} {% else %} 255.255.255.0 {% endif %}
+
+{%      if intf.description is defined %}
+ description {{intf.description}}
+{%      endif %}
+ no shutdown
+!
+{% endfor %}
+!
+{# BGP Configuration #}
+{% for n in neighbours %}
+{%    if n.state == "absent" %}
+no neighbour {{n.address}}
+{%    else %}
+neighbor {{n.address}} remote-as {{n.asn}}
+neighbor {{n.address}} description {{n.description}}
+{%      if n.policy is defined %}
+neighbor {{n.address}} route-map {{n.policy}} in
+{%      endif %}
+{%      if n.state == "down" %}
+neighbor {{n.address}} shutdown
+{%      endif %}
+{%      if n.prefixes is defined %}
+neighbor {{n.address}} prefix-list bgp-neighbor-{{n.address}} in
+{%      endif %}
+{% 	  endif %}
+{% endfor %}
+
+ {# set up the prefix lists for each neighbour #}
+{% for n in neighbors if n.prefixes is defined and n.state != "absent" %}
+{%   for p in n.prefixes %}
+ip prefix-list bgp-neighbor-{{n.address}} seq {{loop.index}} permit {{p}}
+{%   endfor %}
+{% endfor %}
+
+
+ 

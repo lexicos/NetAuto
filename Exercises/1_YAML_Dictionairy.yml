@@ -1,0 +1,11 @@
+---
+hostname: Host1
+loopback: 1.1.1.1
+maxint: 4
+banner: |
+  This is the 
+  first of 
+  six lines
+  all including
+  newline 
+  breaks

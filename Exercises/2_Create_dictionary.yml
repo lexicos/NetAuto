@@ -1,0 +1,11 @@
+#2 Create a dictionary containing hostname (a string), loopback (an IP
+#   address), and interfaces (a list of strings).
+---
+hostname: "Geoff"
+loopback: 1.1.2.2
+interfaces: 
+- "gigabit 0/0/0"
+- "gigabit 0/0/1"
+- "gigabit 0/0/2"
+
+interfaces2: ['tengig 0/0/1', 'tengig 0/0/2', 'tengig 0/0/3'] 
