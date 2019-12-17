@@ -21,14 +21,14 @@ syslog:
   - 192.168.1.102
 
 interfaces: 
-  - name: Gig1
+  - name: Gigabit 0/0/1
     address: 172.1.2.3
     mask: 255.255.255.128
     description: "this is the description"
-  - name: Gig2
+  - name: Gigabit 0/0/2
     address: 172.3.4.5
-  - {name: Gig3, address: 172.18.2.3 }
-  - {name: Gig4, address: 172.18.2.4 }
+  - {name: Gigabit 0/0/3, address: 172.18.2.3 }
+  - {name: Gigabit 0/0/4, address: 172.18.2.4 }
 
 neighbours:
 - address: 1.1.1.4
