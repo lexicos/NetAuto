@@ -17,21 +17,12 @@ syslog {{server}}
 !
  {# Setup the interfaces #}
 {% for intf in interfaces %}
-{%    if intf.mask is defined %}
 interface {{intf.name}} 
- ip address {{intf.address}} {{intf.mask}}
+ ip address {{intf.address}} {% if intf.mask %} {{intf.mask}} {% else %} 255.255.255.0 {% endif %}
 {%      if intf.description is defined %}
  description {{intf.description}}
 {%      endif %}
  no shutdown
-{%    else %}
-interface {{intf.name}} 
- ip address {{intf.address}} 255.255.255.0
-{%      if intf.description is defined %}
- description {{intf.description}}
-{%      endif %}
- no shutdown
-{%    endif %}
 {% endfor %}
 !
 {# BGP Configuration #}
