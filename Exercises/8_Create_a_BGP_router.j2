@@ -10,10 +10,16 @@ banner motd #
 !
  {# Syslog server if present#}
 {% if syslog is defined %}
-{%   for s in syslog %}
-syslog {{s}}
+{%   for server in syslog %}
+syslog {{server}}
 {%   endfor %}
 {% endif %}
+!
+{% for ifname in interfaces %}
+interfaces {{interfaces.name}} {{interfaces.address}} 
+interface {{ifname}}
+no shutdown
+{% endfor %}
 !
 {# BGP Configuration #}
 {% for n in neighbours %}
