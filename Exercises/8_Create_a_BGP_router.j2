@@ -29,9 +29,10 @@ neighbour {{n.address}} shutdown
 {%      if n.prefixes is defined %}
 neighbor {{n.address}} prefix-list bgp-neighbor-{{n.address}} in
 {%      endif %}
-{%    endfor %}
+{% 	  endif %}
+{% endfor %}
 
-{%   for n in neighbors if n.prefixes is defined and n.state != "absent" %}
+{% for n in neighbors if n.prefixes is defined and n.state != "absent" %}
 {%   for p in n.prefixes %}
 ip prefix-list bgp-neighbor-{{n.address}} seq {{loop.index}} permit {{p}}
 {%   endfor %}

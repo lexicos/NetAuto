@@ -18,8 +18,8 @@ neighbor {{n.address}} prefix-list bgp-neighbor-{{n.address}} in
 {% endfor %}
 !
 {% for n in neighbors if n.prefixes is defined and n.state != "absent" %}
-{% for p in n.prefixes %}
+{%  for p in n.prefixes %}
 ip prefix-list bgp-neighbor-{{n.address}} seq {{loop.index}} permit {{p}}
-{% endfor %}
+{%  endfor %}
 !
 {% endfor %}
