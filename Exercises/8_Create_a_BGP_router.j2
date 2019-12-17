@@ -18,13 +18,13 @@ syslog {{syslog}}
 {%    if n.state == "absent" %}
 no neighbour {{n.address}}
 {%    else %}
-neighbour {{n.address}} remote-as {{n.asn}}
-neighbour {{n.address}} description {{n.description}}
+neighbor {{n.address}} remote-as {{n.asn}}
+neighbor {{n.address}} description {{n.description}}
 {%      if n.policy is defined %}
-neighbour {{n.address}} route-map {{n.policy}} in
+neighbor {{n.address}} route-map {{n.policy}} in
 {%      endif %}
 {%      if n.state == "down" %}
-neighbour {{n.address}} shutdown
+neighbor {{n.address}} shutdown
 {%      endif %}
 {%      if n.prefixes is defined %}
 neighbor {{n.address}} prefix-list bgp-neighbor-{{n.address}} in
