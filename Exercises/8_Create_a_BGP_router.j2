@@ -5,8 +5,8 @@ hostname {{hostname}}
  ip address {{loopback}} 255.255.255.255
 !
 banner motd #
- {{banner}}
- #
+{{banner}}
+#
 !
  {# Syslog server if present#}
  {% if syslog is defined %}
@@ -16,7 +16,7 @@ syslog {{syslog}}
 {# BGP Configuration #}
 {% for n in neighbours %}
 {%    if n.state == "absent" %}
-no neighbours {{n.address}}
+no neighbour {{n.address}}
 {%    else %}
 neighbour {{n.address}} remote-as {{n.asn}}
 neighbour {{n.address}} description {{n.description}}

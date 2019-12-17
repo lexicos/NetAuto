@@ -15,7 +15,6 @@ banner: |
  This is line 4
  This is line 5
  This is line 6
- |
 
 syslog: 192.168.1.100
 
@@ -28,13 +27,13 @@ interfaces:
   - {name: Gig4, address: 172.18.2.4/24 }
 
 neighbours:
-- ipaddress: 1.1.1.4
+- address: 1.1.1.4
   description: "Inter DC link"
   asn: 65004
   state: present
   policy: permitany
   prefixes: [ 172.16.0.0/16, 172.17.0.0/16 ] #Inline
 
-- { description: "Internat Link", ipaddress: 1.1.1.5, asn: 65005, state: down, policy: denyany, prefixes: [172.18.0.0/16, 172.19.0.0/16]}
+- { description: "Internat Link", address: 1.1.1.5, asn: 65005, state: down, policy: denyany, prefixes: [172.18.0.0/16, 172.19.0.0/16]}
 
-- { description: "Evil Twin", ipaddress: 1.1.1.6, asn: 65006, state: absent, policy: denyany, prefixes: [172.19.0.0/16, 172.20.0.0/16]}
+- { description: "Evil Twin", address: 1.1.1.6, asn: 65006, state: absent, policy: denyany, prefixes: [172.19.0.0/16, 172.20.0.0/16]}
