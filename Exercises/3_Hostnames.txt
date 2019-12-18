@@ -1,5 +1,0 @@
---- Rendering template 3_Hostnames.j2 ---
-almonds.brightslide.com ansible_user=cisco ansible_ssh_pass=cisco
-brazil.brightslide.com ansible_user=cisco ansible_ssh_pass=cisco
-dolphin.brightslide.com ansible_user=cisco ansible_ssh_pass=cisco
-echo.brightslide.com ansible_user=cisco ansible_ssh_pass=cisco
