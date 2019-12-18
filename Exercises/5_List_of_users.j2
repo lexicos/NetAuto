@@ -1,9 +1,0 @@
-{% for u in users %}
-username {{u.username}} password {{u.password}}
-username {{u.username}} privilege {{u.privilege|default(2)}}
-
-{%   if u.autocommand is defined %}
-username {{u.username}} autocommand {{u.autocommand}}
-{%   endif %}
-
-{% endfor %}
