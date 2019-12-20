@@ -1,0 +1,20 @@
+---
+#- name: "Collect facts from the routes and save to json file"
+- hosts: iosv
+  gather_facts: no
+
+  vars:
+  - results: results
+  - ansible_connection: network_cli #Required to override ssh in config
+
+  tasks:
+  - file: path={{results}} state=directory
+    run_once: true
+  - name: Gather Facts
+    ios_facts:
+    register: result
+  - copy:
+     content: "{{result.ansible_facts}}"
+     dest: "{{results}}/inventory_hosthame.json" 
+  
+

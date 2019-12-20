@@ -1,5 +1,6 @@
 ---
-- hosts: iosv , iosxr
+# This task uses the default connection mechanism of SSH.
+- hosts: iosv
   gather_facts: no
 
   tasks:
