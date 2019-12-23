@@ -3,6 +3,10 @@
 - hosts: iosv
   gather_facts: no
 
+  vars:
+  - ansible_connection: ssh #Required to override network_cli in config
+
   tasks:
    - name: get interfaces
      raw: "show ip interface brief"
+ 
