@@ -1,6 +1,6 @@
 ---
 #- name: "Collect facts from the routes and save to json file"
-- hosts: iosv
+- hosts: iosv, iosxr
   gather_facts: no
 
   vars:
@@ -9,10 +9,20 @@
   tasks:
   - file: path={{results}} state=directory
     run_once: true
+
+  - name: snmp facts
+    snmp_facts:
+     host: '{{ inventory_hostname }}'
+     version: v2
+     community: public
+
   - name: Gather Facts
     ios_facts:
+      gather_subset: all
     register: result
+
   - copy:
-     content: "{{result.ansible_facts}}"
-     dest: "{{results}}/inventory_hosthame.json" 
-  
+     content: |
+       {{hostvars[inventory_hostname]|
+        to_nice_yaml(indent=4)}}
+     dest: "{{results}}/{{inventory_hostname}}.yml" 
