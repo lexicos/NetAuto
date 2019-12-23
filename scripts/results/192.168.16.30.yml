@@ -140,7 +140,7 @@ ansible_facts:
     syslocation: ''
     sysname: Antwerp.lab.com
     sysobjectid: 1.3.6.1.4.1.9.1.1041
-    sysuptime: '664021'
+    sysuptime: '715054'
 ansible_forks: 5
 ansible_interfaces:
     '1':
@@ -289,7 +289,7 @@ ansible_sysdescr: "Cisco IOS Software, IOSv Software (VIOS-ADVENTERPRISEK9-M), V
 ansible_syslocation: ''
 ansible_sysname: Antwerp.lab.com
 ansible_sysobjectid: 1.3.6.1.4.1.9.1.1041
-ansible_sysuptime: '664021'
+ansible_sysuptime: '715054'
 ansible_user: !vault |
     $ANSIBLE_VAULT;1.1;AES256
     63633330643561343362613034366636616639373530646334333662376139323832373466646138
@@ -328,7 +328,7 @@ inventory_dir: /etc/ansible/NetAuto/scripts/inventory
 inventory_file: /etc/ansible/NetAuto/scripts/inventory/hosts.yml
 inventory_hostname: 192.168.16.30
 inventory_hostname_short: '192'
-omit: __omit_place_holder__0979d79bed7e7eaa5445d22003092b901e2244f3
+omit: __omit_place_holder__4ad50581976852c390bfbc061050c9a920172327
 playbook_dir: /etc/ansible/NetAuto/scripts
 result:
     ansible_facts:
