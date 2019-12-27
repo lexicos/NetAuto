@@ -1,0 +1,25 @@
+---
+################ IOSXR #####################
+
+- hosts: iosxr
+  gather_facts: no
+ 
+  vars:
+  - resultsx: results
+
+  tasks:
+  - name: Gather IOSXR Facts
+    iosxr_facts:
+      gather_subset: all
+    register: results
+
+  - name: debug xr
+    debug:
+      msg: "{{results.ansible_facts.ansible_net_config}}"
+
+  - name: Create IOSXR Configuration File Dump
+    copy:
+     content: |
+       {{results.ansible_facts.ansible_net_config|
+        to_nice_yaml(indent=4)}}
+     dest: "{{results_folder}}/{{ansible_net_hostname}}_cfg.yml"     

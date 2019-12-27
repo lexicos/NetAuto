@@ -1,0 +1,42 @@
+"!\nversion 15.7\nservice timestamps debug datetime msec\nservice timestamps log datetime\
+    \ msec\nno service password-encryption\n!\nhostname Bruges\n!\nboot-start-marker\n\
+    boot-end-marker\n!\n!\nenable secret 5 $1$tY.6$ugdEt/L5nhH/NYcR6qRG71\n!\naaa\
+    \ new-model\n!\n!\n!\n!\n!\n!\n!\naaa session-id common\n!\n!\n!\nmmi polling-interval\
+    \ 60\nno mmi auto-configure\nno mmi pvc\nmmi snmp-timeout 180\n!\n!\n!\n!\n!\n\
+    no ip icmp rate-limit unreachable\n!\n!\n!\n!\n!\n!\nno ip domain lookup\nip domain\
+    \ name lab.com\nip cef\nno ipv6 cef\n!\nmultilink bundle-name authenticated\n\
+    !\n!\n!\n!\nusername cisco password 0 cisco\n!\nredundancy\n!\nno cdp log mismatch\
+    \ duplex\n!\nip tcp synwait-time 5\n! \n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface\
+    \ GigabitEthernet0/0\n no ip address\n shutdown\n duplex auto\n speed auto\n media-type\
+    \ rj45\n!\ninterface GigabitEthernet0/1\n no ip address\n shutdown\n duplex auto\n\
+    \ speed auto\n media-type rj45\n!\ninterface GigabitEthernet0/2\n no ip address\n\
+    \ shutdown\n duplex auto\n speed auto\n media-type rj45\n!\ninterface GigabitEthernet0/3\n\
+    \ ip address 192.168.16.20 255.255.255.0\n duplex auto\n speed auto\n media-type\
+    \ rj45\n!\nip forward-protocol nd\n!\n!\nno ip http server\nno ip http secure-server\n\
+    ip route 0.0.0.0 0.0.0.0 10.1.1.254\nip route 0.0.0.0 0.0.0.0 192.168.16.2\nip\
+    \ ssh time-out 60\nip ssh version 2\n!\nipv6 ioam timestamp\n!\nsnmp-server community\
+    \ public RO\nsnmp-server chassis-id \n!\n!\n!\n!\ncontrol-plane\n!\nbanner exec\
+    \ ^C\n**************************************************************************\n\
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *\n*\
+    \ education. IOSv is provided as-is and is not supported by Cisco's      *\n*\
+    \ Technical Advisory Center. Any use or disclosure, in whole or in part, *\n*\
+    \ of the IOSv Software or Documentation to any third party for any       *\n*\
+    \ purposes is expressly prohibited except as otherwise authorized by     *\n*\
+    \ Cisco in writing.                                                      *\n**************************************************************************^C\n\
+    banner incoming ^C\n**************************************************************************\n\
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *\n*\
+    \ education. IOSv is provided as-is and is not supported by Cisco's      *\n*\
+    \ Technical Advisory Center. Any use or disclosure, in whole or in part, *\n*\
+    \ of the IOSv Software or Documentation to any third party for any       *\n*\
+    \ purposes is expressly prohibited except as otherwise authorized by     *\n*\
+    \ Cisco in writing.                                                      *\n**************************************************************************^C\n\
+    banner login ^C\n**************************************************************************\n\
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *\n*\
+    \ education. IOSv is provided as-is and is not supported by Cisco's      *\n*\
+    \ Technical Advisory Center. Any use or disclosure, in whole or in part, *\n*\
+    \ of the IOSv Software or Documentation to any third party for any       *\n*\
+    \ purposes is expressly prohibited except as otherwise authorized by     *\n*\
+    \ Cisco in writing.                                                      *\n**************************************************************************^C\n\
+    !\nline con 0\n exec-timeout 0 0\n privilege level 15\n logging synchronous\n\
+    line aux 0\n exec-timeout 0 0\n privilege level 15\n logging synchronous\nline\
+    \ vty 0 4\n transport input ssh\n!\nno scheduler allocate\n!\nend"

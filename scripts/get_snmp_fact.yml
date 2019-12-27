@@ -1,0 +1,23 @@
+---
+- hosts: iosv, iosxr
+  gather_facts: no
+
+  vars:
+  - results: results
+
+  tasks:
+  - name: Create Folder for results
+    file: path={{results_folder}} state=directory
+    run_once: true 
+
+  - name: snmp facts
+    snmp_facts:
+     host: '{{ inventory_hostname }}'
+     version: v2
+     community: public
+    register: results
+
+  - name: debug
+    debug:
+      msg: "{{results}}" 
+ 

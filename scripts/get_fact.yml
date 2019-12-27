@@ -1,5 +1,4 @@
 ---
-#- name: "Collect facts from the routes and save to json file"
 - hosts: iosv, iosxr
   gather_facts: no
 
@@ -7,22 +6,68 @@
   - results: results
 
   tasks:
-  - file: path={{results}} state=directory
-    run_once: true
+  - name: Create Folder for results
+    file: path={{results_folder}} state=directory
+    run_once: true 
 
   - name: snmp facts
     snmp_facts:
      host: '{{ inventory_hostname }}'
      version: v2
      community: public
+    register: results
 
-  - name: Gather Facts
+  - name: debug
+    debug:
+      msg: "{{results}}"
+
+################ IOSV #####################
+
+- hosts: iosv
+  gather_facts: no
+
+  vars:
+  - results: results
+
+  tasks:
+  - name: Gather IOSV Facts
     ios_facts:
       gather_subset: all
-    register: result
+    register: results
 
-  - copy:
+  - name: debug v
+    debug:
+      msg: "{{results.ansible_facts.ansible_net_config}}"
+
+  - name: Create IOSV Configuration File Dump
+    copy:
      content: |
-       {{hostvars[inventory_hostname]|
+       {{results.ansible_facts.ansible_net_config|
         to_nice_yaml(indent=4)}}
-     dest: "{{results}}/{{inventory_hostname}}.yml" 
+     dest: "{{results_folder}}/{{ansible_net_hostname}}_cfg.yml" 
+
+################ IOSXR #####################
+
+- hosts: iosxr
+  gather_facts: no
+ 
+  vars:
+  - resultsx: results
+
+  tasks:
+  - name: Gather IOSXR Facts
+    iosxr_facts:
+      gather_subset: all
+    register: results
+
+  - name: debug xr
+    debug:
+      msg: "{{results.ansible_facts.ansible_net_config}}"
+
+  - name: Create IOSXR Configuration File Dump
+    copy:
+     content: |
+       {{results.ansible_facts.ansible_net_config|
+        to_nice_yaml(indent=4)}}
+     dest: "{{results_folder}}/{{ansible_net_hostname}}_cfg.yml"      
+
