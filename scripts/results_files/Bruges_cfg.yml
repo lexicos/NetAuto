@@ -13,10 +13,9 @@
     \ shutdown\n duplex auto\n speed auto\n media-type rj45\n!\ninterface GigabitEthernet0/3\n\
     \ ip address 192.168.16.20 255.255.255.0\n duplex auto\n speed auto\n media-type\
     \ rj45\n!\nip forward-protocol nd\n!\n!\nno ip http server\nno ip http secure-server\n\
-    ip route 0.0.0.0 0.0.0.0 10.1.1.254\nip route 0.0.0.0 0.0.0.0 192.168.16.2\nip\
-    \ ssh time-out 60\nip ssh version 2\n!\nipv6 ioam timestamp\n!\nsnmp-server community\
-    \ public RO\nsnmp-server chassis-id \n!\n!\n!\n!\ncontrol-plane\n!\nbanner exec\
-    \ ^C\n**************************************************************************\n\
+    ip route 0.0.0.0 0.0.0.0 192.168.16.2\nip ssh time-out 60\nip ssh version 2\n\
+    !\nipv6 ioam timestamp\n!\nsnmp-server community public RO\nsnmp-server chassis-id\
+    \ \n!\n!\n!\n!\ncontrol-plane\n!\nbanner exec ^C\n**************************************************************************\n\
     * IOSv is strictly limited to use for evaluation, demonstration and IOS  *\n*\
     \ education. IOSv is provided as-is and is not supported by Cisco's      *\n*\
     \ Technical Advisory Center. Any use or disclosure, in whole or in part, *\n*\

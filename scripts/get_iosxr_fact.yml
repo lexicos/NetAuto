@@ -1,21 +1,8 @@
 ---
-################ IOSXR #####################
-
-- hosts: iosxr
-  gather_facts: no
- 
-  vars:
-  - resultsx: results
-
-  tasks:
   - name: Gather IOSXR Facts
     iosxr_facts:
       gather_subset: all
     register: results
-
-  - name: debug xr
-    debug:
-      msg: "{{results.ansible_facts.ansible_net_config}}"
 
   - name: Create IOSXR Configuration File Dump
     copy:

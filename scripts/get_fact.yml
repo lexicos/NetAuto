@@ -1,7 +1,6 @@
 ---
 - hosts: iosv, iosxr
   gather_facts: no
-
   vars:
   - results: results
 
@@ -22,10 +21,8 @@
       msg: "{{results}}"
 
 ################ IOSV #####################
-
 - hosts: iosv
   gather_facts: no
-
   vars:
   - results: results
 
@@ -47,10 +44,8 @@
      dest: "{{results_folder}}/{{ansible_net_hostname}}_cfg.yml" 
 
 ################ IOSXR #####################
-
 - hosts: iosxr
   gather_facts: no
- 
   vars:
   - resultsx: results
 

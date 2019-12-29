@@ -1,0 +1,13 @@
+---
+- file: path="{{results_folder}}/{{report}}" state=touch
+  run_once: true     
+
+- lineinfile:
+    dest:   "{{results_folder}}/{{report}}"
+    regexp: "{{inventory_hostname}}"
+    line:   "{{'%-20s %8s'|format(ansible_net_hostname,ansible_sysuptime)}}" 
+
+- lineinfile:
+    dest:   "{{results_folder}}/{{report}}"
+    regexp: "{{inventory_hostname}}"
+    line:   "{{'%-20s %8s'|format(ansible_net_hostname,ansible_net_version)}}" 

@@ -1,20 +1,8 @@
 ---
-################ IOSV #####################
-- hosts: iosv
-  gather_facts: no
-
-  vars:
-  - results: results
-
-  tasks:
   - name: Gather IOSV Facts
     ios_facts:
       gather_subset: all
     register: results
-
-  - name: debug v
-    debug:
-      msg: "{{results.ansible_facts.ansible_net_config}}"
 
   - name: Create IOSV Configuration File Dump
     copy:
