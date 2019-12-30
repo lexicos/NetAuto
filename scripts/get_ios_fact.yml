@@ -1,0 +1,11 @@
+---
+  - name: Gather IOSV Facts
+    ios_facts:
+      gather_subset: all
+    register: results
+
+  - name: Create dump of variables
+    copy:
+     content: |
+       {{results.ansible_facts}}
+     dest: "{{results_folder}}/{{ansible_net_hostname}}.json"  

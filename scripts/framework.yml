@@ -1,0 +1,23 @@
+---
+- hosts: all   #"all is the play name"
+
+  tasks:
+  - name: Create Folder for results
+    file: path={{results_folder}} state=directory
+    run_once: true 
+
+################ IOSV #####################
+- hosts: ios
+  tasks:
+  - include_tasks: "get_{{platform1|default(group_names[0])}}_fact.yml"
+
+################ IOSXR #####################
+- hosts: iosxr
+  tasks:
+  - include_tasks: "get_{{platform2|default(group_names[0])}}_fact.yml"
+
+- hosts: all  
+  tasks:
+  - include_tasks: "get_{{platform3|default(group_names[1])}}_fact.yml"
+################ Report ####################  
+  - include_tasks: "report_all_fact_j2.yml"

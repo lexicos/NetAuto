@@ -1,0 +1,7 @@
+---
+  - name: snmp facts
+    snmp_facts:
+     host: '{{ inventory_hostname }}'
+     version: v2
+     community: public
+    register: results
