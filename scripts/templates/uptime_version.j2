@@ -6,7 +6,7 @@ Per host uptime and software report.
 |Nodes|Uptime|Software|
 |-----|------|--------|
 {% for host,facts in allhosts|dictsort %}
-|{{facts.ansible_net_hostname}}||{{facts.ansible_sysuptime}}|{{facts.ansible_net_version}}|
+|{{facts.ansible_net_hostname}}|{{facts.ansible_sysuptime}}|{{facts.ansible_net_version}}|
 {% endfor %}
 
 
