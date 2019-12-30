@@ -4,9 +4,8 @@
       gather_subset: all
     register: results
 
-  - name: Create IOSV Configuration File Dump
+  - name: Create dump of variables
     copy:
      content: |
-       {{results.ansible_facts.ansible_net_config|
-        to_nice_yaml(indent=4)}}
-     dest: "{{results_folder}}/{{ansible_net_hostname}}_cfg.yml"  
+       {{results.ansible_facts}}
+     dest: "{{results_folder}}/{{ansible_net_hostname}}.json"  

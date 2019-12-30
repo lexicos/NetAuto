@@ -1,4 +1,8 @@
 ---
+##### TODO change this so it overwrites ####
+- file: path="{{results_folder}}/{{report}}" state=absent
+  run_once: true   
+
 - file: path="{{results_folder}}/{{report}}" state=touch
   run_once: true     
 

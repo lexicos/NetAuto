@@ -5,19 +5,19 @@
   - name: Create Folder for results
     file: path={{results_folder}} state=directory
     run_once: true 
-  - include_tasks: "get_snmp_fact.yml"
 
 ################ IOSV #####################
-- hosts: iosv
+- hosts: ios
   tasks:
-  - include: "get_ios_fact.yml"
+  - include_tasks: "get_{{platform1|default(group_names[0])}}_fact.yml"
 
 ################ IOSXR #####################
 - hosts: iosxr
   tasks:
-  - include: "get_iosxr_fact.yml"
+  - include_tasks: "get_{{platform2|default(group_names[0])}}_fact.yml"
 
-################ Report ####################
 - hosts: all  
   tasks:
-  - include: "report_all_fact.yml"
+  - include_tasks: "get_{{platform3|default(group_names[1])}}_fact.yml"
+################ Report ####################  
+  - include_tasks: "report_all_fact_j2.yml"
