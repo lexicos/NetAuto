@@ -12,8 +12,9 @@ Behold this fictional network put together to support training and development o
 |Delhi|5024375|6.1.3[Default]|
 |Singapore|5025125|6.1.3[Default]|
 
-#Basic report generation (AKA easy wins) 
+# Basic report generation (AKA easy wins) 
 The report runs from an hosts.ini file but can also run from the hosts.yml file. It supports --extra-vars as follows.
 ansible-playbook -i inventory/hosts.ini framework.yml --extra-vars "platform1=ios platform1=iosxr platform3=snmp"
 The final report can be viewed at .
+## script interactions
 ![Reports HW](https://user-images.githubusercontent.com/17169238/71604140-2ff62b80-2b58-11ea-8612-b84c79774ad7.PNG)
