@@ -5,12 +5,12 @@ Per host uptime and software report.
 
 |Nodes|Uptime|Software|
 |-----|------|--------|
-|Bristol|5110543|15.7(3)M3|
-|Bruges|5110988|15.7(3)M3|
-|Antwerp|5111032|15.7(3)M3|
-|Bahrain|5074484|6.1.3[Default]|
-|Delhi|5024375|6.1.3[Default]|
-|Singapore|5025125|6.1.3[Default]|
+|Bristol|56189|15.7(3)M3|
+|Bruges|56250|15.7(3)M3|
+|Antwerp|56435|15.7(3)M3|
+|Bahrain|25410|6.1.3[Default]|
+|Delhi|25692|6.1.3[Default]|
+|Singapore|25795|6.1.3[Default]|
 
 
 
