@@ -1,0 +1,26 @@
+---
+- hosts: all
+#  roles:
+#    - napalm
+
+  vars:
+    output: "{{inventory_dir}}/snapshots"
+    format: yaml
+ 
+  tasks:
+  - include_tasks: "{{item}}"
+    vars:
+      filter_dir: getters/{{ansible_network_os}}
+    with_fileglob: [ "getters/{{ansible_network_os}}/*.yml" ]
+
+#  - Debug:
+#      msg: "debug item is {{items}}"  
+
+  - include_tasks: "{{item}}"
+    with_fileglob: [ "getters/napalm/*.yml" ]
+
+  - include_tasks: "../tools/include/snapshot.yml"
+    when: snapshot is defined
+
+  - name: Save
+    include_tasks: "{{ 'savers/'+format+'.yml' }}"
