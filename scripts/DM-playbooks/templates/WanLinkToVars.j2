@@ -1,0 +1,26 @@
+---
+#  Dynamic vars file do not edit
+#
+{%- macro internal_link(LID,port,ip,description,RemPort) -%}
+- port: {{ port }}
+  ip: {{ WanNet | ipsubnet (31 , LID ) | ipaddr( ip ) | ipaddr('address') }} 
+  mask: {{ WanNet | ipsubnet (31 , LID ) | ipaddr('netmask') }} 
+  description: "Link {{LID}} to {{description}} port {{RemPort}}"
+{% endmacro %}
+
+
+hostname: {{inventory_hostname}}
+shortname: {{inventory_hostname_short}}
+nodeid: {{nodeid}}
+
+links:
+{%   for link in WanLinks %}
+{%     if link.A == inventory_hostname_short -%}
+  {{ internal_link(link.LinkID,link.LowPort, link.LowIP, link.B, link.HighPort) }}
+
+{%     elif link.B == inventory_hostname_short %}
+  {{ internal_link(link.LinkID,link.HighPort, link.HighIP, link.A,link.LowPort) }}
+{%     endif %}
+{%   endfor %}
+
+...

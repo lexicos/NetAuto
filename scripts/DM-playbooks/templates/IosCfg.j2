@@ -1,0 +1,119 @@
+#  This template builds the device confdiguration from the data model.
+{% macro internal_link(LID,port,ip,description,RemPort) %}
+{{ port }}:
+   ip address: {{ WanNet | ipsubnet (31 , LID ) | ipaddr( ip ) | ipaddr('address') }} 
+   mask: {{ WanNet | ipsubnet (31 , LID ) | ipaddr('netmask') }} 
+   description: "Link {{LID}} to {{description}} port {{RemPort}}"
+{% endmacro %}
+!
+hostname {{hostname}}
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$GBl2$gi2wO3fEptFhhmv3s9ebR.
+!
+aaa new-model
+!
+aaa session-id common
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+no ip icmp rate-limit unreachable
+!
+no ip domain lookup
+ip domain name {{inventory_hostname}}
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+{% for u in Users %}
+username {{u.username}} password 0 {{u.password}}
+{% endfor %}
+!
+redundancy
+!
+no cdp log mismatch duplex
+!
+ip tcp synwait-time 5
+! 
+!
+{%   for l in links %}
+interface {{l.port}} 
+ ip address {{l.ip}} mask {{l.mask}}
+ description {{l.description}}
+ ip ospf network point-to-point
+ ip ospf 10 area 0
+ duplex auto
+ speed auto
+ media-type rj45
+{%   endfor %}
+!
+router ospf 10
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 192.168.16.2
+ip ssh time-out 60
+ip ssh version 2
+!
+ipv6 ioam timestamp
+!
+snmp-server community public RO
+snmp-server chassis-id 
+!
+!
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ transport input ssh
+!
+no scheduler allocate
+!
+end

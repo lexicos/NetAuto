@@ -1,0 +1,28 @@
+---
+#  Dynamic vars file do not edit
+#
+
+hostname: GBR01.east.net
+shortname: GBR01
+nodeid: 30
+
+links:
+  - port: GigabitEthernet0/0
+  ip: 10.10.101.27 
+  mask: 255.255.255.254 
+  description: "Link 13 to BEL01 port GigabitEthernet0/0"
+
+- port: GigabitEthernet0/1
+  ip: 10.10.101.46 
+  mask: 255.255.255.254 
+  description: "Link 23 to BEL02 port GigabitEthernet0/0"
+
+
+- port: GigabitEthernet0/2
+  ip: 10.10.101.68 
+  mask: 255.255.255.254 
+  description: "Link 34 to BHR01 port GigabitEthernet0/0/0/2"
+
+
+
+...

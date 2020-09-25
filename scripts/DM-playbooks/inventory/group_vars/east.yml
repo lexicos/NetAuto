@@ -1,0 +1,20 @@
+---
+ansible_network_os: ios
+
+Common:
+  DNS1: 10.10.10.10
+  DNS2: 10.10.10.11
+  SNMP1: 10.10.10.12
+  SNMP2: 10.10.10.13
+  NMS1: 10.10.60.20
+  NMS2: 10.10.60.21
+
+Users: 
+- username: Bob
+  password: test123
+- username: Bill
+  password: test123
+- username: Geoff
+  password: test123
+
+...

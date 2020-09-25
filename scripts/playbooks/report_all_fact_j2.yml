@@ -1,0 +1,9 @@
+---
+- template: 
+    src: "{{fmt|default('uptime_version.j2')}}" 
+    dest: "{{results_folder}}/{{output|default(reportj2)}}"
+  
+  vars:
+    allhosts: "{{hostvars}}"
+  run_once: true
+

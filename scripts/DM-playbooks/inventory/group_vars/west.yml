@@ -1,0 +1,18 @@
+---
+
+
+DNS1: 10.10.60.10
+DNS2: 10.10.60.11
+SNMP1: 10.10.60.12
+SNMP2: 10.10.60.13
+NMS1: 10.10.60.20
+
+Users: 
+- username: Angel
+  password: test123
+- username: Kim
+  password: test123
+- username: Toni
+  password: test123
+
+...

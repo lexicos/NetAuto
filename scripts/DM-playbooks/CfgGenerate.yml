@@ -1,0 +1,23 @@
+
+---
+- hosts: west
+  gather_facts: no
+  connection: local
+  tasks:
+  - include_vars: "{{inventory_dir}}/hosts.yml"
+  - include_vars: "{{inventory_dir}}/host_vars/{{inventory_hostname_short}}.yml"
+  - name: Generated IOS configurations
+    template: src=IosCfg.j2 dest=configurations/{{inventory_hostname_short}}.cfg
+
+#
+#
+#- hosts: east
+#  gather_facts: no
+#  connection: local
+#  tasks:
+#  - name: Generate IOS-V configurations
+#    template: src=WanLinkToVars.j2 dest={{inventory_dir}}/host_vars/{{inventory_hostname_short}}.yml
+#
+
+
+
