@@ -7,17 +7,17 @@ shortname: BHR01
 nodeid: 40
 
 links:
-  - port: GigabitEthernet0/0/0/0
+- port: GigabitEthernet0/0/0/0
   ip: 10.10.101.47 
   mask: 255.255.255.254 
   description: "Link 23 to SGP01 port GigabitEthernet0/0/0/0"
 
-  - port: GigabitEthernet0/0/0/1
+- port: GigabitEthernet0/0/0/1
   ip: 10.10.101.93 
   mask: 255.255.255.254 
   description: "Link 46 to IND01 port GigabitEthernet0/0/0/0"
 
-  - port: GigabitEthernet0/0/0/2
+- port: GigabitEthernet0/0/0/2
   ip: 10.10.101.69 
   mask: 255.255.255.254 
   description: "Link 34 to GBR01 port GigabitEthernet0/2"

@@ -7,7 +7,7 @@ shortname: GBR01
 nodeid: 30
 
 links:
-  - port: GigabitEthernet0/0
+- port: GigabitEthernet0/0
   ip: 10.10.101.27 
   mask: 255.255.255.254 
   description: "Link 13 to BEL01 port GigabitEthernet0/0"

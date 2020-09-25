@@ -18,7 +18,7 @@ links:
 {%     if link.A == inventory_hostname_short -%}
   {{ internal_link(link.LinkID,link.LowPort, link.LowIP, link.B, link.HighPort) }}
 
-{%     elif link.B == inventory_hostname_short %}
+{%     elif link.B == inventory_hostname_short -%}
   {{ internal_link(link.LinkID,link.HighPort, link.HighIP, link.A,link.LowPort) }}
 {%     endif %}
 {%   endfor %}

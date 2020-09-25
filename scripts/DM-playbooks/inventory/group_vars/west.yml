@@ -15,4 +15,6 @@ Users:
 - username: Toni
   password: test123
 
+ansible_os: XE
+
 ...

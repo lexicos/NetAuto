@@ -1,6 +1,6 @@
 
 ---
-- hosts: west
+- hosts: all
   gather_facts: no
   connection: local
   tasks:
@@ -8,7 +8,7 @@
   - include_vars: "{{inventory_dir}}/host_vars/{{inventory_hostname_short}}.yml"
   - name: Generated IOS configurations
     template: src=IosCfg.j2 dest=configurations/{{inventory_hostname_short}}.cfg
-
+    when: ansible_os == 'IOS'
 #
 #
 #- hosts: east
