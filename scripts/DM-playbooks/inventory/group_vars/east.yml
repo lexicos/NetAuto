@@ -17,6 +17,6 @@ Users:
 - username: Geoff
   password: test123
 
-ansible_os: IOS
+ansible_os: XE
 
 ...

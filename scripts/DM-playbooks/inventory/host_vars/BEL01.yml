@@ -22,7 +22,7 @@ links:
 - port: GigabitEthernet0/2
   ip: 10.10.101.32 
   mask: 255.255.255.254 
-  description: "Link 16 to SPG01 port GigabitEthernet0/0/0/2"
+  description: "Link 16 to SGP01 port GigabitEthernet0/0/0/2"
 
 
 

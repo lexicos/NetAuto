@@ -15,7 +15,7 @@ WanLinks:
 - { LinkID: 56, A: IND01 , LowPort: GigabitEthernet0/0/0/1, LowIP: 0, B: SPG01, HighPort: GigabitEthernet0/0/0/1, HighIP: 1 }
 
 ## ########### Inter Region Connections ###########
-- { LinkID: 16, A: BEL01 , LowPort: GigabitEthernet0/2, LowIP: 0, B: SPG01, HighPort: GigabitEthernet0/0/0/2, HighIP: 1 }
+- { LinkID: 16, A: BEL01 , LowPort: GigabitEthernet0/2, LowIP: 0, B: SGP01, HighPort: GigabitEthernet0/0/0/2, HighIP: 1 }
 
 - { LinkID: 34, A: GBR01 , LowPort: GigabitEthernet0/2, LowIP: 0, B: BHR01, HighPort: GigabitEthernet0/0/0/2, HighIP: 1 }
  
