@@ -1,5 +1,6 @@
-{%- macro Minterface(port,IP,mask,description) -%}
- interface {{port}}
- network point-to-point
-!  
+{%- macro Mroute(loops,node,port) -%}
+router ospf 10
+ router-id {{( loops | ipaddr (node) | ipaddr ('address') )}}
+ default-metric 1000
+ area 0
 {% endmacro %} 

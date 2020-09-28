@@ -1,1 +1,5 @@
+{%- macro Mroute(loops,node,port) -%}
 router ospf 10
+ router-id {{( loops | ipaddr (node) | ipaddr ('address') )}}
+ default-metric 1000
+{% endmacro %} 

@@ -1,6 +1,9 @@
 #  This template builds the device confdiguration from the data model.
 {% set SRCtemplate = ansible_os + "-Interface.jinja2" %}
 {% from SRCtemplate import Minterface %}
+
+{% set SRCroute = ansible_os + "-routing.j2" %}
+{% from SRCroute import Mroute %}
 !
 !
 hostname {{inventory_hostname_short}}
@@ -47,8 +50,18 @@ interface loopback 0
 {%   endfor %}
 !
 !
-router ospf 10
-ospf routerid {{( loopbacks | ipaddr (nodeid) | ipaddr ('address') )}} mask 255.255.255.255 
+{%     if ansible_os == "IOS" -%}
+  {{ Mroute (loopbacks,nodeid,port) }}
+{%     elif ansible_os == "XE" -%}
+  {{ Mroute (loopbacks,nodeid,port) }}
+!
+{% for l in links %} 
+  interface {{l.port}}
+   network point-to-point
+  !
+{%   endfor %} 
+
+{%     endif %}
 !
 ip forward-protocol nd
 !
