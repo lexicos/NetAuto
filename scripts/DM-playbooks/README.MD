@@ -43,39 +43,39 @@ The **<em>CfgGenerate.yml</em>** playbook
 <l1>Resulting files are stored in the configurations directory.</l1>
 
 <H2> Data model structure </H2>
-
-+-- ansible.cfg
-+-- CfgGenerate.yml
-+-- configurations
-│   +-- BEL01.cfg
-│   +-- BEL02.cfg
-│   +-- BHR01.cfg
-│   +-- GBR01.cfg
-│   +-- IND01.cfg
-│   \-- SGP01.cfg
-+-- inventory
-│   +-- group_vars
-│   │   +-- all.yml
-│   │   +-- east.yml
-│   │   \-- west.yml
-│   +-- hosts.ini
-│   +-- hosts.yml
-│   \-- host_vars
-│       +-- BEL01.yml
-│       +-- BEL02.yml
-│       +-- BHR01.yml
-│       +-- GBR01.yml
-│       +-- IND01.yml
-│       \-- SGP01.yml
-+-- README.MD
-+-- services.yml
-+-- templates
-│   +-- IosCfg.j2
-│   +-- IOS-Interface.jinja2
-│   +-- IOS-routing.j2
-│   +-- WanLinkToVars.j2
-│   +-- XECfg.j2
-│   +-- XE-Interface.jinja2
-│   \-- XE-routing.j2
-+-- WanLinkToHostVars.yml
-\-- WanLink.yml
+.
+|-- ansible.cfg
+|-- CfgGenerate.yml
+|-- configurations
+|   |-- BEL01.cfg
+|   |-- BEL02.cfg
+|   |-- BHR01.cfg
+|   |-- GBR01.cfg
+|   |-- IND01.cfg
+|   `-- SGP01.cfg
+|-- inventory
+|   |-- group_vars
+|   |   |-- all.yml
+|   |   |-- east.yml
+|   |   `-- west.yml
+|   |-- hosts.ini
+|   |-- hosts.yml
+|   `-- host_vars
+|       |-- BEL01.yml
+|       |-- BEL02.yml
+|       |-- BHR01.yml
+|       |-- GBR01.yml
+|       |-- IND01.yml
+|       `-- SGP01.yml
+|-- README.MD
+|-- services.yml
+|-- templates
+|   |-- IosCfg.j2
+|   |-- IOS-Interface.jinja2
+|   |-- IOS-routing.j2
+|   |-- WanLinkToVars.j2
+|   |-- XECfg.j2
+|   |-- XE-Interface.jinja2
+|   `-- XE-routing.j2
+|-- WanLinkToHostVars.yml
+`-- WanLink.yml
