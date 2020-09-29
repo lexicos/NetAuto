@@ -3,11 +3,11 @@
 <H2> Network Wide Allocations </H2>
 The network will consist of the following network wide allocations.
 
-All nodes loopback will be derived from the **10.10.100.0/24**  subnet where the last octet is a unique node ID ranging from 0 to 255.
+All nodes **loopback** will be derived from the **10.10.100.0/24**  subnet where the last octet is a unique node ID ranging from 0 to 255.
 
-All internal WAN links will be derived from the following subnet **10.10.101.0/24** where each link is addressed using a /31 subnet mask and referenced via LinkID ranging from 0-127. 
+All internal **WAN links** will be derived from the following subnet **10.10.101.0/24** where each link is addressed using a /31 subnet mask and referenced via LinkID ranging from 0-127. 
 
-All customer and service addressing will come from the **172.16.0.0/16** subnet and subdivided as required. All systems are managed via NMS systems in the East region.
+All customer and **service addressing** will come from the **172.16.0.0/16** subnet and subdivided as required. All systems are managed via NMS systems in the East region.
 These allocations are captured in the <em>inventory/group_vars/all.yml</em> file.
 
 <h2>Groupings of nodes</h2>
