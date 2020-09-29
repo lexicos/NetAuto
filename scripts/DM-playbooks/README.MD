@@ -22,6 +22,6 @@ Individual host_vars files are generated at playbook runtime using the following
 
 <h2>Playbook</h2>
 The CfgGenerate.ynl playbook 
-1) Generates host_vars for east and west nodes using the WanLinksToVars.j2 template
-2) Generates per node configurations using the IosCfg.j2 template.
-3) Resulting files are stored in the configurations directory.
+<li> Generates host_vars for east and west nodes using the WanLinksToVars.j2 template</li>
+<li> Generates per node configurations using the IosCfg.j2 template.</li>
+<l1>Resulting files are stored in the configurations directory.</l1>
