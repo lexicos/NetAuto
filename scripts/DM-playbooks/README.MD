@@ -43,6 +43,7 @@ The **<em>CfgGenerate.yml</em>** playbook
 <l1>Resulting files are stored in the configurations directory.</l1>
 
 <H2> Data model structure </H2>
+
 +-- ansible.cfg
 +-- CfgGenerate.yml
 +-- configurations
