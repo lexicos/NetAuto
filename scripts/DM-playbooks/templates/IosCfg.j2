@@ -1,9 +1,6 @@
 #  This template builds the device confdiguration from the data model.
-{% set SRCtemplate = ansible_os + "-Interface.jinja2" %}
-{% from SRCtemplate import Minterface %}
-
-{% set SRCroute = ansible_os + "-routing.j2" %}
-{% from SRCroute import Mroute %}
+{% from ansible_os + "-Interface.jinja2" import Minterface %}
+{% from ansible_os + "-routing.j2" import Mroute %}
 !
 !
 hostname {{inventory_hostname_short}}

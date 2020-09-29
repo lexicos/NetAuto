@@ -17,5 +17,7 @@ ansible_password: !vault |
 loopbacks: 10.10.100.0/24
 WanNet: 10.10.101.0/24
 customer: 172.16.0.0/16
+NMS1: 10.10.60.20
+NMS2: 10.10.60.21
 
 ...
