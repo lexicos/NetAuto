@@ -16,3 +16,10 @@ All nodes have been renamed from city names to 3-digit county codes plus a refer
 Individual host_vars files are generated at playbook runtime using the following WanLinkToHostVars.yml playbook which uses the templates/WanLinkToVars.j2 to generate the files. The WAN links are recorded in the WanLink.yml file.
 
 Customer service
+
+
+Playbook
+The CfgGenerate.ynl playbook 
+1) Generates host_vars for east and west nodes using the WanLinksToVars.j2 template
+2) Generates per node configurations using the IosCfg.j2 template.
+3) Resulting files are stored in the configurations directory.
