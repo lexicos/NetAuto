@@ -2,7 +2,8 @@
 
 <H2> Network Wide Allocations </H2>
 The network will consist of the following network wide allocations.
-All nodes loopback will be derived from the ** 10.10.100.0/24**  subnet where the last octet is a unique node ID ranging from 0 to 255.
+
+All nodes loopback will be derived from the **10.10.100.0/24**  subnet where the last octet is a unique node ID ranging from 0 to 255.
 
 All internal WAN links will be derived from the following subnet **10.10.101.0/24** where each link is addressed using a /31 subnet mask and referenced via LinkID ranging from 0-127. 
 
@@ -11,6 +12,7 @@ These allocations are captured in the <em>inventory/group_vars/all.yml</em> file
 
 <h2>Groupings of nodes</h2>
 The network is administered by two distinct teams managing an East and West region. Each region has its own DNS, SMNP and NMS systems as detailed below.
+
 |       | East        | West        |
 |-------|-------------|-------------|
 | DNS1  | 10.10.60.10 | 10.10.10.10 |
