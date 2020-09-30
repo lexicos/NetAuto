@@ -2,4 +2,5 @@
 router ospf 10
  router-id {{( loops | ipaddr (node) | ipaddr ('address') )}}
  default-metric 1000
+ network {{( loops | ipaddr (node) | ipaddr ('address') )}} 0.0.0.0 area 0
 {% endmacro %} 

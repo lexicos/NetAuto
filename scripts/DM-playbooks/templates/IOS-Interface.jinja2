@@ -1,6 +1,6 @@
  {%- macro Minterface(port,IP,mask,description) -%}
 interface {{port}}
- ip address {{IP}} mask {{mask}}
+ ip address {{IP}} {{mask}}
  description {{description}}
  ip ospf network point-to-point
  ip ospf 10 area 0

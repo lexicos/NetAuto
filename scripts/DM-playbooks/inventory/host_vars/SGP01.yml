@@ -13,6 +13,11 @@ links:
   description: "Link 23 to BHR01 port GigabitEthernet0/0/0/0"
 
 
+- port: GigabitEthernet0/0/0/1
+  ip: 10.10.101.113 
+  mask: 255.255.255.254 
+  description: "Link 56 to IND01 port GigabitEthernet0/0/0/1"
+
 - port: GigabitEthernet0/0/0/2
   ip: 10.10.101.33 
   mask: 255.255.255.254 
