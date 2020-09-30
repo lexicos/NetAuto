@@ -6,7 +6,7 @@
   - include_vars: "{{inventory_dir}}/hosts.yml"
   - include_vars: "WanLink.yml"
   - name: Create per-node vars files from Wan-Link data model
-    template: src=WanLinkToVars.j2 dest={{inventory_dir}}/host_vars/{{inventory_hostname_short}}.yml
+    template: src=Generate-HostVars.j2 dest={{inventory_dir}}/host_vars/{{inventory_hostname_short}}.yml
 
 - hosts: east
   gather_facts: no
@@ -15,11 +15,7 @@
   - include_vars: "{{inventory_dir}}/hosts.yml"
   - include_vars: "WanLink.yml"
   - name: Create per-node vars files from Wan-Link data model
-    template: src=WanLinkToVars.j2 dest={{inventory_dir}}/host_vars/{{inventory_hostname_short}}.yml
-
-
-
-
+    template: src=Generate-HostVars.j2 dest={{inventory_dir}}/host_vars/{{inventory_hostname_short}}.yml
 
 
 

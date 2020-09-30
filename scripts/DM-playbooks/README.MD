@@ -29,17 +29,17 @@ All nodes have been renamed from city names to 3-digit county codes plus a refer
 
 All nodes within the network are recorded in the **<em>inventory/hosts.yml</em>** file which details the region or group, FQDN, IP address and nodeid. 
 
-Individual host_vars files are generated at playbook runtime using the following **<em>WanLinkToHostVars.yml</em>** playbook which uses the **<em>templates/WanLinkToVars.j2</em>** to generate the files. The WAN links are recorded in the WanLink.yml file.
+Individual host_vars files are generated at playbook runtime using the following **<em>Generate-HostVars.yml</em>** playbook which uses the **<em>templates/Generate-HostVars.j2</em>** templateto generate the files. The WAN links are recorded in the WanLink.yml file.
 
 <h2>Customer service</h2>
 To be added
 
 <h2>Playbook</h2>
 
-The **<em>CfgGenerate.yml</em>** playbook 
+The **<em>Generate-Configurations.yml</em>** playbook 
 
-<li> Generates host_vars for east and west nodes using the*<em>WanLinksToVars.j2</em> template</li>
-<li> Generates per node configurations using the <em>IosCfg.j2</em> template.</li>
+<li> Generates host_vars for east and west nodes using the*<em>Generate-HostVars.j2</em> template</li>
+<li> Generates per node configurations using the <em>Generate-Configurations.j2</em> template.</li>
 <l1>Resulting files are stored in the configurations directory.</l1>
 
 <H2> Data model structure </H2>
