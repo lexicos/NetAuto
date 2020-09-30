@@ -1,6 +1,7 @@
 #  This template builds the device confdiguration from the data model.
 {% from ansible_os + "-Interface.jinja2" import Minterface %}
-{% from ansible_os + "-routing.j2" import Mroute %}
+{% from ansible_os + "-routing.jinja2" import Mroute %}
+{% from ansible_os + "-SNMP.jinja2" import Msnmp %}
 !
 !
 hostname {{inventory_hostname_short}}
@@ -11,6 +12,7 @@ enable secret 5 $1$GBl2$gi2wO3fEptFhhmv3s9ebR.
 no ip domain lookup
 ip domain name {{inventory_hostname}}
 !
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  Users confdiguration  >>>>>>>>>>>>>>>>>>>>>>>>>>#}
 {% for u in Users %}
 username {{u.username}} password 0 {{u.password}}
 {% endfor %}
@@ -20,14 +22,20 @@ no cdp log mismatch duplex
 interface loopback 0 
  ip address {{( loopbacks | ipaddr (nodeid) | ipaddr ('address') )}} mask 255.255.255.255 
 !
+{#>>>>>>>>>>>>>>>>>>>>>>>>>> XR SNMP confdiguration >>>>>>>>>>>>>>>>>>>>>>>>>>#}
+{%     if ansible_os == "XR" -%}
+  {{ Msnmp (SNMP1,SNMP2,NMS1,NMS2) }}
+{%-     endif -%}  
+!
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  Interface confdiguration >>>>>>>>>>>>>>>>>>>>>>>#}
 {%   for l in links -%}
   {{ Minterface (l.port,l.ip,l.mask,l.description) }}
 {%   endfor %}
 !
-!
+{#>>>>>>>>>>>>>>>>>>>>>>>>>> IP Routing  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#}
 {%     if ansible_os == "IOS" -%}
   {{ Mroute (loopbacks,nodeid,port) }}
-{%     elif ansible_os == "XE" -%}
+{%     elif ansible_os == "XR" -%}
   {{ Mroute (loopbacks,nodeid,port) }}
 {%- for l in links -%} 
 interface {{l.port}}
@@ -41,8 +49,11 @@ ip route 0.0.0.0 0.0.0.0 192.168.16.2
 ip ssh time-out 60
 ip ssh version 2
 !
-!
-snmp-server community public RO
+{#>>>>>>>>>>>>>>>>>>>>>>>>>> IOS SNMP confdiguration >>>>>>>>>>>>>>>>>>>>>>>>>#}
+{%     if ansible_os == "IOS" -%}
+  {{ Msnmp (SNMP1,SNMP2,NMS1,NMS2) }}
+{%-     endif -%}  
+
 !
 line con 0
  exec-timeout 0 0
