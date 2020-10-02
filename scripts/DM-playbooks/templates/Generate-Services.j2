@@ -1,10 +1,42 @@
 #  This template builds the service confdiguration from the data model.
-{% from ansible_os + "-Interface.jinja2" import Minterface %}
+{% from ansible_os + "-Int-Tun.jinja2" import MTun %}
 {% from ansible_os + "-routing.jinja2" import Mroute %}
-{% from ansible_os + "-SNMP.jinja2" import Msnmp %}
-
+!
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  VRF confdiguration  >>>>>>>>>>>>>>>>>>>>>>>-#} 
 {%     if ansible_os == "IOS" -%}
-  {{ Mroute (loopbacks,nodeid,port,ServiceID,OSPFarea,VRF) }}
+ip vrf {{Customer}}-{{ServiceID}}
+ description {{Customer}}  {{ServiceID}} service VRF
+ rd 1:1
 {%     elif ansible_os == "XR" -%}
-  {{ Mroute (loopbacks,nodeid,port,ServiceID,OSPFarea,VRF) }}
+ rd-set 1:1 
+{%-     endif -%}
+!
+!
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  loopback confdiguration  >>>>>>>>>>>>>>>>>>>>>>>-#} 
+interface Loopback {{ServiceID}}
+{%     if ansible_os == "IOS" -%}
+ ip vrf forwarding {{Customer}}-{{ServiceID}}
+ ip address {{( loopbacks | ipaddr (nodeid) | ipaddr ('address') )}}  255.255.255.255
+{%     elif ansible_os == "XR" -%}
+ vrf {{Customer}}-{{ServiceID}}
+ ipv4 address {{( loopbacks | ipaddr (nodeid) | ipaddr ('address') )}}  255.255.255.255
+{%     endif -%}
+!
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  Tunnel confdiguration  >>>>>>>>>>>>>>>>>>>>>-#}
+{% for T in TUNNELS %}
+{%     if T.from == inventory_hostname -%}
+ {#{hostvars [ '{{IND01.west.net}}' ] ['nodeid']}#}
+{{ MTun (Customer,ServiceID,OSPFarea,VRF,T.from,T.to,loop.index) }}
+{%     elif T.to == inventory_hostname -%}
+{{ MTun (Customer,ServiceID,OSPFarea,VRF,T.to,T.from,loop.index) }}
+{%     endif %}
+{% endfor %}
+!
+ {#{hostvars [ '{{IND01.west.net}}' ] ['nodeid']}#}
+!
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  Routing confdiguration  >>>>>>>>>>>>>>>>>>>>>>>-#} 
+{%     if ansible_os == "IOS" -%}
+{{ Mroute (loopbacks,nodeid,port,ServiceID,OSPFarea,VRF) }}
+{%     elif ansible_os == "XR" -%}
+{{ Mroute (loopbacks,nodeid,port,ServiceID,OSPFarea,VRF) }}
 {%-     endif -%}

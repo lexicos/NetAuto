@@ -1,0 +1,33 @@
+#  This template builds the service confdiguration from the data model.
+!
+rd-set 1:1!
+!
+interface Loopback 20
+vrf Gaffatape-20
+ ipv4 address 172.16.1.60  255.255.255.255
+!
+interface tunnel-ip 202
+ description Gaffatape 20 Tunnel to BEL01
+ vrf Gaffatape-20
+ ipv4 unnumbered Loopback 20
+ tunnel mode gre ipv4
+ tunnel source Loopback0
+ tunnel destination 10.10.100.BEL01
+ 
+interface tunnel-ip 203
+ description Gaffatape 20 Tunnel to IND01
+ vrf Gaffatape-20
+ ipv4 unnumbered Loopback 20
+ tunnel mode gre ipv4
+ tunnel source Loopback0
+ tunnel destination 10.10.100.IND01
+ 
+!
+router ospf 20
+ vrf Gaffatape-20
+ router-id 172.16.1.60
+ default-metric 1000
+ area 20
+  loopback stub-network enable
+  interface Loopback20
+ !
