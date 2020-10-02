@@ -1,0 +1,22 @@
+ip vrf {{Customer}}-{{ServiceID}}
+ description {{Customer}} A {{ServiceID}} VRF
+ rd 1:1
+
+interface Loopback {{ServiceID}}
+ ip vrf forwarding {{Customer}}-{{ServiceID}}
+ ip address {{( IP-Range | ipaddr (nodeid) | ipaddr ('address') )}}  255.255.255.255
+ ip ospf {{ServiceID} area {{OSPFarea}}
+!
+{{% for tunnels in TUNNEL %}}
+interface Tunnel{{loop.index.ServiceID}
+ description Tunnel to all other nodes
+ ip vrf forwarding {{Customer}}-{{ServiceID}}
+ ip unnumbered Loopback {{ServiceID}}
+ ip ospf network point-to-point
+ ip ospf {{ServiceID}} area {{OSPFarea}}
+ tunnel source Loopback0
+ tunnel destination 10.10.100.50
+
+ router ospf 20 vrf {{Customer}}-{{ServiceID}}
+ router-id {{( IP-Range | ipaddr (nodeid) | ipaddr ('address') )}}
+ default-metric 100

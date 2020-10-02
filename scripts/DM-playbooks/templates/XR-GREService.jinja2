@@ -1,0 +1,24 @@
+interface Loopback50
+ vrf CUST-A
+ ipv4 address 172.16.1.50 255.255.255.255
+!
+interface tunnel-ip1
+ description Tunnel for customer A
+ vrf CUST-A
+ ipv4 unnumbered Loopback50
+ tunnel mode gre ipv4
+ tunnel source Loopback0
+ tunnel destination 10.10.100.20
+
+ rd-set 1:1
+
+ router ospf 20
+ vrf CUST-A
+  router-id 172.16.1.50
+  default-metric 100
+  area 1
+   interface Loopback50
+    network point-to-point
+   !
+   interface tunnel-ip1
+    network point-to-point

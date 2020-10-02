@@ -1,2 +1,12 @@
 ---
-GreMess: 
+Customer: Gaffatape-
+ServiceID: 20
+loopbacks: 172.16.1.0/24
+OSPFarea: 20
+VRF: " vrf Gaffatape-20"
+
+TUNNELS:
+- { from: BEL02, To: IND01 }
+- { from: BEL02, To: SGP01 }
+- { from: IND01, To: SGP01 }
+

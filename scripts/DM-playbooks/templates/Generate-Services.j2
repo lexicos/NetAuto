@@ -1,0 +1,10 @@
+#  This template builds the service confdiguration from the data model.
+{% from ansible_os + "-Interface.jinja2" import Minterface %}
+{% from ansible_os + "-routing.jinja2" import Mroute %}
+{% from ansible_os + "-SNMP.jinja2" import Msnmp %}
+
+{%     if ansible_os == "IOS" -%}
+  {{ Mroute (loopbacks,nodeid,port,ServiceID,OSPFarea,VRF) }}
+{%     elif ansible_os == "XR" -%}
+  {{ Mroute (loopbacks,nodeid,port,ServiceID,OSPFarea,VRF) }}
+{%-     endif -%}
