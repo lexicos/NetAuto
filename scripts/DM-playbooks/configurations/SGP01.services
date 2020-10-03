@@ -7,21 +7,21 @@ vrf Gaffatape-20
  ipv4 address 172.16.1.60  255.255.255.255
 !
 interface tunnel-ip 202
- description Gaffatape 20 Tunnel to BEL01
+ description Gaffatape 20 Tunnel to BEL01.east.net
  vrf Gaffatape-20
  ipv4 unnumbered Loopback 20
  tunnel mode gre ipv4
  tunnel source Loopback0
- tunnel destination 10.10.100.BEL01
- 
+ tunnel destination 10.10.100.10
+ !
 interface tunnel-ip 203
- description Gaffatape 20 Tunnel to IND01
+ description Gaffatape 20 Tunnel to IND01.west.net
  vrf Gaffatape-20
  ipv4 unnumbered Loopback 20
  tunnel mode gre ipv4
  tunnel source Loopback0
- tunnel destination 10.10.100.IND01
- 
+ tunnel destination 10.10.100.50
+ !
 !
 router ospf 20
  vrf Gaffatape-20

@@ -23,16 +23,17 @@ interface Loopback {{ServiceID}}
 {%     endif -%}
 !
 {#>>>>>>>>>>>>>>>>>>>>>>>>>>  Tunnel confdiguration  >>>>>>>>>>>>>>>>>>>>>-#}
-{% for T in TUNNELS %}
+{% for T in TUNNELS -%}
 {%     if T.from == inventory_hostname -%}
- {#{hostvars [ '{{IND01.west.net}}' ] ['nodeid']}#}
-{{ MTun (Customer,ServiceID,OSPFarea,VRF,T.from,T.to,loop.index) }}
+{%         set RemTun = hostvars [ T.to ] ['nodeid'] -%}
+{{ MTun (Customer,ServiceID,OSPFarea,VRF,T.from,T.to,loop.index,RemTun) -}}
+!
 {%     elif T.to == inventory_hostname -%}
-{{ MTun (Customer,ServiceID,OSPFarea,VRF,T.to,T.from,loop.index) }}
+{%         set RemTun = hostvars [ T.from ] ['nodeid'] -%}
+{{ MTun (Customer,ServiceID,OSPFarea,VRF,T.to,T.from,loop.index,RemTun) -}}
+!
 {%     endif %}
 {% endfor %}
-!
- {#{hostvars [ '{{IND01.west.net}}' ] ['nodeid']}#}
 !
 {#>>>>>>>>>>>>>>>>>>>>>>>>>>  Routing confdiguration  >>>>>>>>>>>>>>>>>>>>>>>-#} 
 {%     if ansible_os == "IOS" -%}

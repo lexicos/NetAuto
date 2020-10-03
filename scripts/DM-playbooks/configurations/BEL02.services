@@ -1,0 +1,17 @@
+#  This template builds the service confdiguration from the data model.
+!
+ip vrf Gaffatape-20
+ description Gaffatape  20 service VRF
+ rd 1:1
+!
+!
+interface Loopback 20
+ip vrf forwarding Gaffatape-20
+ ip address 172.16.1.20  255.255.255.255
+!
+!
+router ospf 20 vrf Gaffatape-20
+ router-id 172.16.1.20
+ default-metric 1000
+ network 172.16.1.20 0.0.0.0 area 20
+
