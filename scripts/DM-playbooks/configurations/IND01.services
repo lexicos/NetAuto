@@ -1,18 +1,19 @@
-#  This template builds the service confdiguration from the data model.
 !
-rd-set 1:1!
+vrf Gaffatape-20
+ address-family ipv4 unicast
+!
 !
 interface Loopback 20
 vrf Gaffatape-20
  ipv4 address 172.16.1.50  255.255.255.255
 !
 interface tunnel-ip 201
- description Gaffatape 20 Tunnel to BEL01.east.net
+ description Gaffatape 20 Tunnel to BEL02.east.net
  vrf Gaffatape-20
  ipv4 unnumbered Loopback 20
  tunnel mode gre ipv4
  tunnel source Loopback0
- tunnel destination 10.10.100.10
+ tunnel destination 10.10.100.20
  !
 interface tunnel-ip 203
  description Gaffatape 20 Tunnel to SGP01.west.net
@@ -31,3 +32,8 @@ router ospf 20
   loopback stub-network enable
   interface Loopback20
  !
+
+interface Tunnel-ip 201
+interface Tunnel-ip 202
+interface Tunnel-ip 203
+ 

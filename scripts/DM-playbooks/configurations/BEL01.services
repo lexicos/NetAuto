@@ -1,4 +1,3 @@
-#  This template builds the service confdiguration from the data model.
 !
 ip vrf Gaffatape-20
  description Gaffatape  20 service VRF
@@ -8,24 +7,6 @@ ip vrf Gaffatape-20
 interface Loopback 20
 ip vrf forwarding Gaffatape-20
  ip address 172.16.1.10  255.255.255.255
-!
-interface Tunnel 201
- description Gaffatape 20 Tunnel to IND01.west.net
- ip vrf forwarding Gaffatape-20
- ip unnumbered Loopback 20
- ip ospf network point-to-point
- ip ospf 20 area 20
- tunnel source Loopback0
- tunnel destination 10.10.100.50
-!
-interface Tunnel 202
- description Gaffatape 20 Tunnel to SGP01.west.net
- ip vrf forwarding Gaffatape-20
- ip unnumbered Loopback 20
- ip ospf network point-to-point
- ip ospf 20 area 20
- tunnel source Loopback0
- tunnel destination 10.10.100.60
 !
 !
 router ospf 20 vrf Gaffatape-20

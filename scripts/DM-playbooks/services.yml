@@ -6,7 +6,7 @@ OSPFarea: 20
 VRF: " vrf Gaffatape-20"
 
 TUNNELS:
-- { from: BEL01.east.net, to: IND01.west.net }
-- { from: BEL01.east.net, to: SGP01.west.net }
+- { from: BEL02.east.net, to: IND01.west.net }
+- { from: BEL02.east.net, to: SGP01.west.net }
 - { from: IND01.west.net, to: SGP01.west.net }
 

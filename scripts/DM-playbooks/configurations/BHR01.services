@@ -1,6 +1,7 @@
-#  This template builds the service confdiguration from the data model.
 !
-rd-set 1:1!
+vrf Gaffatape-20
+ address-family ipv4 unicast
+!
 !
 interface Loopback 20
 vrf Gaffatape-20
@@ -15,3 +16,8 @@ router ospf 20
   loopback stub-network enable
   interface Loopback20
  !
+
+interface Tunnel-ip 201
+interface Tunnel-ip 202
+interface Tunnel-ip 203
+ 

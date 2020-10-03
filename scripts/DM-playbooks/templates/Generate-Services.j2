@@ -1,18 +1,20 @@
-#  This template builds the service confdiguration from the data model.
+{#  This template builds the service confdiguration from the data model. #}
+{#  This template uses two macros to configure routing and tunnels #}
 {% from ansible_os + "-Int-Tun.jinja2" import MTun %}
 {% from ansible_os + "-routing.jinja2" import Mroute %}
 !
-{#>>>>>>>>>>>>>>>>>>>>>>>>>>  VRF confdiguration  >>>>>>>>>>>>>>>>>>>>>>>-#} 
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  VRF confdiguration  >>>>>>>>>>>>>>>>>>>>>>>>>>-#}
 {%     if ansible_os == "IOS" -%}
 ip vrf {{Customer}}-{{ServiceID}}
  description {{Customer}}  {{ServiceID}} service VRF
  rd 1:1
 {%     elif ansible_os == "XR" -%}
- rd-set 1:1 
-{%-     endif -%}
+vrf {{Customer}}-{{ServiceID}}
+ address-family ipv4 unicast
+{%     endif -%}
 !
 !
-{#>>>>>>>>>>>>>>>>>>>>>>>>>>  loopback confdiguration  >>>>>>>>>>>>>>>>>>>>>>>-#} 
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  loopback confdiguration  >>>>>>>>>>>>>>>>>>>>>-#} 
 interface Loopback {{ServiceID}}
 {%     if ansible_os == "IOS" -%}
  ip vrf forwarding {{Customer}}-{{ServiceID}}
@@ -22,7 +24,7 @@ interface Loopback {{ServiceID}}
  ipv4 address {{( loopbacks | ipaddr (nodeid) | ipaddr ('address') )}}  255.255.255.255
 {%     endif -%}
 !
-{#>>>>>>>>>>>>>>>>>>>>>>>>>>  Tunnel confdiguration  >>>>>>>>>>>>>>>>>>>>>-#}
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  Tunnel confdiguration  >>>>>>>>>>>>>>>>>>>>>>>-#}
 {% for T in TUNNELS -%}
 {%     if T.from == inventory_hostname -%}
 {%         set RemTun = hostvars [ T.to ] ['nodeid'] -%}
@@ -35,9 +37,14 @@ interface Loopback {{ServiceID}}
 {%     endif %}
 {% endfor %}
 !
-{#>>>>>>>>>>>>>>>>>>>>>>>>>>  Routing confdiguration  >>>>>>>>>>>>>>>>>>>>>>>-#} 
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  Routing confdiguration  >>>>>>>>>>>>>>>>>>>>>>-#} 
 {%     if ansible_os == "IOS" -%}
 {{ Mroute (loopbacks,nodeid,port,ServiceID,OSPFarea,VRF) }}
 {%     elif ansible_os == "XR" -%}
 {{ Mroute (loopbacks,nodeid,port,ServiceID,OSPFarea,VRF) }}
-{%-     endif -%}
+{%    for T in TUNNELS -%} 
+{# TODO come back and sort ouut specific loop index this is at best ugly -#}
+    interface Tunnel-ip {{ServiceID}}{{loop.index}}
+{# TODO sort out lstrip for abve we need the leading spaces -#}    
+{%       endfor %} 
+{%     endif -%}
