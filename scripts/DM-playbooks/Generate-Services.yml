@@ -6,7 +6,7 @@
   - include_vars: "{{inventory_dir}}/hosts.yml"
   - include_vars: "{{inventory_dir}}/host_vars/{{inventory_hostname_short}}.yml"
   - include_vars: "services.yml"
-  - name: Generated IOS configurations
+  - name: Generated Service configurations
     template: src=Generate-Services.j2 dest=configurations/{{inventory_hostname_short}}.services
 
 

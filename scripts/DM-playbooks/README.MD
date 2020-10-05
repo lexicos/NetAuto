@@ -31,10 +31,7 @@ All nodes within the network are recorded in the **<em>inventory/hosts.yml</em>*
 
 Individual host_vars files are generated at playbook runtime using the following **<em>Generate-HostVars.yml</em>** playbook which uses the **<em>templates/Generate-HostVars.j2</em>** templateto generate the files. The WAN links are recorded in the WanLink.yml file.
 
-<h2>Customer service</h2>
-To be added
-
-<h2>Playbook</h2>
+<h2> Infrastructure Playbook</h2>
 
 The **<em>Generate-Configurations.yml</em>** playbook 
 
@@ -42,4 +39,20 @@ The **<em>Generate-Configurations.yml</em>** playbook
 <li> Generates per node configurations using the <em>Generate-Configurations.j2</em> template.</li>
 <l1>Resulting files are stored in the configurations directory.</l1>
 
-<H2> Data model structure </H2>
+<H2> Infrasturcture Data model Diagram </H2>
+
+<h1>Customer service</h1>
+This service is not optimal and better solutions exist to this problem but hey its just for practices. The service is a mesh of VPN tunnels between 3 of the nodes. The service configures the base elements such as VRF and routing instances for all nodes. Only 3 of the nodes however have customer access ports configured to align with the topology. 
+
+The service uses the **172.16.1.0/24** subnet to host loopback addresses which are used for unnumbered tunnel addressing. 
+
+The customer facing ports are host a /29 subnet within the **172.16.16.0/22** subnet range. The actual subnet is derived from the node ID of the service with the port being the first in the subnet.
+
+<h2> Services Playbook</h2>
+
+The **<em>Generate-services.yml</em>** playbook 
+
+<li> Generates per node configurations using the <em>Generate-Services.j2</em> template.</li>
+<l1> Resulting files are stored in the configurations directory.</l1>
+
+<H2> Services Data model Diagram </H2>
