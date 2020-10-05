@@ -45,7 +45,7 @@ The **<em>Generate-Configurations.yml</em>** playbook
 
 ![Infra-Data-Model](https://user-images.githubusercontent.com/17169238/95121518-0bfaf280-0747-11eb-85a8-dff94a1e81ba.PNG)
 
-<h1>Customer service</h1>
+<h1>Customer GRE Tunnel service</h1>
 This service is not optimal and better solutions exist to this problem but hey its just for practices. The service is a mesh of VPN tunnels between 3 of the nodes. The service configures the base elements such as VRF and routing instances for all nodes. Only 3 of the nodes however have customer access ports configured to align with the topology. 
 
 The service uses the **172.16.1.0/24** subnet to host loopback addresses which are used for unnumbered tunnel addressing. 
