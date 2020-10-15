@@ -1,4 +1,6 @@
-<H1>	Description infrastructure Data Model </H1>
+<H1> Infrastructure Data Model </H1>
+
+![Topology](https://user-images.githubusercontent.com/17169238/95120967-46b05b00-0746-11eb-9cdd-753b4e936536.PNG)
 
 <H2> Network Wide Allocations </H2>
 The network will consist of the following network wide allocations.
@@ -41,7 +43,9 @@ The **<em>Generate-Configurations.yml</em>** playbook
 
 <H2> Infrasturcture Data model Diagram </H2>
 
-<h1>Customer service</h1>
+![Infra-Data-Model](https://user-images.githubusercontent.com/17169238/95121518-0bfaf280-0747-11eb-85a8-dff94a1e81ba.PNG)
+
+<h1>Customer GRE Tunnel service</h1>
 This service is not optimal and better solutions exist to this problem but hey its just for practices. The service is a mesh of VPN tunnels between 3 of the nodes. The service configures the base elements such as VRF and routing instances for all nodes. Only 3 of the nodes however have customer access ports configured to align with the topology. 
 
 The service uses the **172.16.1.0/24** subnet to host loopback addresses which are used for unnumbered tunnel addressing. 
@@ -56,3 +60,5 @@ The **<em>Generate-services.yml</em>** playbook
 <l1> Resulting files are stored in the configurations directory.</l1>
 
 <H2> Services Data model Diagram </H2>
+
+![Services-Data-Model](https://user-images.githubusercontent.com/17169238/95121085-70698200-0746-11eb-8983-9a90f610eec9.PNG)
