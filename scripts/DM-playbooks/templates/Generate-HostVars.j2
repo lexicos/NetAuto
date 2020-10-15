@@ -16,10 +16,10 @@ nodeid: {{nodeid}}
 links:
 {%   for link in WanLinks %}
 {%     if link.A == inventory_hostname_short -%}
-  {{ internal_link(link.LinkID,link.LowPort, link.LowIP, link.B, link.HighPort) }}
+  {{ internal_link(link.LinkID,link.LowPort, 0 , link.B, link.HighPort) }}
 
 {%     elif link.B == inventory_hostname_short -%}
-  {{ internal_link(link.LinkID,link.HighPort, link.HighIP, link.A,link.LowPort) }}
+  {{ internal_link(link.LinkID,link.HighPort, 1 , link.A,link.LowPort) }}
 {%     endif %}
 {%   endfor %}
 

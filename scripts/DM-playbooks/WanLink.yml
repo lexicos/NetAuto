@@ -1,22 +1,22 @@
 ---
 WanLinks:
 ########### Intra West Region Connections ###########
-- { LinkID: 13, A: BEL01 , LowPort: GigabitEthernet0/0, LowIP: 0, B: GBR01, HighPort: GigabitEthernet0/0, HighIP: 1 }
+- { LinkID: 13, A: BEL01 , LowPort: GigabitEthernet0/0, B: GBR01, HighPort: GigabitEthernet0/0 }
 
-- { LinkID: 12, A: BEL01 , LowPort: GigabitEthernet0/1, LowIP: 0, B: BEL02, HighPort: GigabitEthernet0/1, HighIP: 1 }
+- { LinkID: 12, A: BEL01 , LowPort: GigabitEthernet0/1, B: BEL02, HighPort: GigabitEthernet0/1 }
  
-- { LinkID: 23, A: GBR01 , LowPort: GigabitEthernet0/1, LowIP: 0, B: BEL02, HighPort: GigabitEthernet0/0, HighIP: 1 }
+- { LinkID: 23, A: GBR01 , LowPort: GigabitEthernet0/1, B: BEL02, HighPort: GigabitEthernet0/0 }
 
 ## ########### Intra East Region Connections ###########
-- { LinkID: 23, A: SGP01 , LowPort: GigabitEthernet0/0/0/0, LowIP: 0, B: BHR01, HighPort: GigabitEthernet0/0/0/0, HighIP: 1 }
+- { LinkID: 23, A: SGP01 , LowPort: GigabitEthernet0/0/0/0, B: BHR01, HighPort: GigabitEthernet0/0/0/0 }
 
-- { LinkID: 46, A: IND01 , LowPort: GigabitEthernet0/0/0/0, LowIP: 0, B: BHR01, HighPort: GigabitEthernet0/0/0/1, HighIP: 1 }
+- { LinkID: 46, A: IND01 , LowPort: GigabitEthernet0/0/0/0, B: BHR01, HighPort: GigabitEthernet0/0/0/1 }
 
-- { LinkID: 56, A: IND01 , LowPort: GigabitEthernet0/0/0/1, LowIP: 0, B: SGP01, HighPort: GigabitEthernet0/0/0/1, HighIP: 1 }
+- { LinkID: 56, A: IND01 , LowPort: GigabitEthernet0/0/0/1, B: SGP01, HighPort: GigabitEthernet0/0/0/1 }
 
-## ########### Inter Region Connections ###########
-- { LinkID: 16, A: BEL01 , LowPort: GigabitEthernet0/2, LowIP: 0, B: SGP01, HighPort: GigabitEthernet0/0/0/2, HighIP: 1 }
+## ########### Inter Region Connections ##########
+- { LinkID: 16, A: BEL01 , LowPort: GigabitEthernet0/2, B: SGP01, HighPort: GigabitEthernet0/0/0/2 }
 
-- { LinkID: 34, A: GBR01 , LowPort: GigabitEthernet0/2, LowIP: 0, B: BHR01, HighPort: GigabitEthernet0/0/0/2, HighIP: 1 }
+- { LinkID: 34, A: GBR01 , LowPort: GigabitEthernet0/2, B: BHR01, HighPort: GigabitEthernet0/0/0/2 }
  
 ...
