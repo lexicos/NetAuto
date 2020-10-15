@@ -1,0 +1,11 @@
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  Used by upstream Generate-services.j2 >>>>>>>>>>>>>>>>>>>>>>>-#}
+{% macro MTun(Customer,ServiceID,OSPFa,VRF,from,to,loop,RemTun) %}
+interface Tunnel {{ServiceID}}{{loop}}
+ description {{Customer}} {{ServiceID}} Tunnel to {{to}}
+ ip vrf forwarding {{Customer}}-{{ServiceID}}
+ ip unnumbered Loopback {{ServiceID}}
+ ip ospf network point-to-point
+ ip ospf {{ServiceID}} area {{OSPFa}}
+ tunnel source Loopback0
+ tunnel destination 10.10.100.{{RemTun}}
+{% endmacro -%}  

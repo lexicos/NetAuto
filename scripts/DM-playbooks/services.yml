@@ -1,0 +1,19 @@
+---
+Customer: Gaffatape
+ServiceID: 20
+loopbacks: 172.16.1.0/24
+ServiceSN: 172.16.16.0/22
+OSPFarea: 20
+VRF: " vrf Gaffatape-20"
+
+TUNNELS:
+- { from: BEL02.east.net, to: IND01.west.net }
+- { from: BEL02.east.net, to: SGP01.west.net }
+- { from: IND01.west.net, to: SGP01.west.net }
+
+INTERFACES:
+- { node: BEL02.east.net, port: "GigabitEthernet 0/2" }  
+- { node: IND01.west.net, port: "GigabitEthernet 0/0/0/7" }  
+- { node: SGP01.west.net, port: "GigabitEthernet 0/0/0/7" }
+ 
+

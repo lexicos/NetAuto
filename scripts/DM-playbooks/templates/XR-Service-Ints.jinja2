@@ -1,0 +1,8 @@
+ {#>>>>>>>>>>>>>>>>>>>>>>>>>>  Used by upstream Generate-services.j2 >>>>>>>>>>>>>>>>>>>>>>>-#}
+ {%- macro MSerInt(port,ServiceID,ServiceSN,OSPFa,Customer,NodeID) -%}
+interface {{port}}
+ vrf {{Customer}}-{{ServiceID}}
+ ipv4 address {{ ServiceSN | ipsubnet (29,NodeID) | ipaddr(1) | ipaddr('address') }} {{ ServiceSN | ipsubnet (29,NodeID) | ipaddr('netmask') }}
+ description Inteface for {{Customer}} service {{ServiceID}}
+!
+{% endmacro %}  

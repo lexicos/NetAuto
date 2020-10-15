@@ -1,0 +1,21 @@
+---
+#  Dynamic vars file do not edit
+#
+
+hostname: BEL02.east.net
+shortname: BEL02
+nodeid: 20
+
+links:
+- port: GigabitEthernet0/1
+  ip: 10.10.101.25 
+  mask: 255.255.255.254 
+  description: "Link 12 to BEL01 port GigabitEthernet0/1"
+
+- port: GigabitEthernet0/0
+  ip: 10.10.101.47 
+  mask: 255.255.255.254 
+  description: "Link 23 to GBR01 port GigabitEthernet0/1"
+
+
+...

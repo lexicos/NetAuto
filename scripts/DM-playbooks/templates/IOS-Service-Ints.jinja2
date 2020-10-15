@@ -1,0 +1,13 @@
+ {#>>>>>>>>>>>>>>>>>>>>>>>>>>  Used by upstream Generate-services.j2 >>>>>>>>>>>>>>>>>>>>>>>-#}
+ {%- macro MSerInt(port,ServiceID,ServiceSN,OSPFa,Customer,NodeID) -%}
+interface {{port}}
+ ip vrf forwarding {{Customer}}-{{ServiceID}}
+ ip address {{ ServiceSN | ipsubnet (29,NodeID) | ipaddr(1) | ipaddr('address') }} {{ ServiceSN | ipsubnet (29,NodeID) | ipaddr('netmask') }}
+ description Inteface for {{Customer}} service {{ServiceID}}
+ ip ospf network point-to-point
+ ip ospf {{ServiceID}} area {{OSPFa}}
+ duplex auto
+ speed auto
+ media-type rj45
+ !
+{% endmacro %}  

@@ -1,0 +1,12 @@
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  Used by upstream Generate-Configs.j2 >>>>>>>>>>>>>>>>>>>>>>>-#}
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  Used by upstream Generate-services.j2 >>>>>>>>>>>>>>>>>>>>>>-#}
+{%- macro Mroute(loops,node,port,ServiceID,OSPFa,VRF) -%}
+router ospf {{ServiceID|default("10")}}
+{{ VRF |default() }}
+ router-id {{( loops | ipaddr (node) | ipaddr ('address') )}}
+ default-metric 1000
+ area {{OSPFa|default(0)}}
+  loopback stub-network enable
+  interface Loopback{{ServiceID|default(0)}}
+ !
+{% endmacro %} 
