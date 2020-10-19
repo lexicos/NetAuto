@@ -18,5 +18,6 @@ WanLinks:
 - { LinkID: 16, A: BEL01 , LowPort: GigabitEthernet0/2, B: SGP01, HighPort: GigabitEthernet0/0/0/2 }
 
 - { LinkID: 34, A: GBR01 , LowPort: GigabitEthernet0/2, B: BHR01, HighPort: GigabitEthernet0/0/0/2 }
- 
+  
+  
 ...

@@ -1,0 +1,16 @@
+.PHONY : all 
+
+all: foo.o foo.bo
+
+foo.o : fooin.c       # module for twiddling the frobs
+	echo "Making foo.o"
+	>foo.o
+
+foo.bo : fooin.d       # module for twiddling the frobs
+	echo "Making foo.bo" 
+	>foo.bo
+
+clean:
+	echo "Cleaning up..."
+	rm foo.*
+
