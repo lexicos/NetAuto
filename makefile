@@ -4,7 +4,7 @@
 all: Generate-HostVars.at Generated-Configurations.at Generated-Services.at
 
 # The rule name must match the output file > below
-Generate-HostVars.at : 	\
+Generate-HostVars.at : \
 		Generate-HostVars.yml \
 		templates/Generate-HostVars.j2 \
 		inventory/hosts.yml \
@@ -13,7 +13,7 @@ Generate-HostVars.at : 	\
 	>Generate-HostVars.at    #This must match the rule name above
 # Not sure why this cant be in a subdirectory
 
-Generated-Configurations.at :	\
+Generated-Configurations.at : \
 		Generate-Configurations.yml \
 		templates/Generate-Configurations.j2 \
 		inventory/hosts.yml \
