@@ -1,0 +1,6 @@
+ {%- macro Minterface(port,IP,mask,description) -%}
+interface {{port}}
+ ipv4 address {{IP}} {{mask}}
+ description {{description}}
+!
+{% endmacro %} 

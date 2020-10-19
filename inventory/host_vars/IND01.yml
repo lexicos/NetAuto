@@ -1,0 +1,23 @@
+---
+#  Dynamic vars file do not edit
+#
+
+hostname: IND01.west.net
+shortname: IND01
+nodeid: 50
+
+links:
+- port: GigabitEthernet0/0/0/0
+  ip: 10.10.101.92 
+  mask: 255.255.255.254 
+  description: "Link 46 to BHR01 port GigabitEthernet0/0/0/1"
+
+
+- port: GigabitEthernet0/0/0/1
+  ip: 10.10.101.112 
+  mask: 255.255.255.254 
+  description: "Link 56 to SGP01 port GigabitEthernet0/0/0/1"
+
+
+
+...

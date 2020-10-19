@@ -1,0 +1,68 @@
+{#  This template builds the service confdiguration from the data model. #}
+{#  This template uses two macros to configure routing and tunnels #}
+{% from ansible_os + "-Int-Tun.jinja2" import MTun %}
+{% from ansible_os + "-routing.jinja2" import Mroute %}
+{% from ansible_os + "-Service-Ints.jinja2" import MSerInt %}
+!
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  VRF confdiguration  >>>>>>>>>>>>>>>>>>>>>>>>>>-#}
+{%     if ansible_os == "IOS" -%}
+ip vrf {{Customer}}-{{ServiceID}}
+ description {{Customer}}  {{ServiceID}} service VRF
+ rd 1:1
+{%     elif ansible_os == "XR" -%}
+vrf {{Customer}}-{{ServiceID}}
+ address-family ipv4 unicast
+{%     endif -%}
+!
+!
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  loopback confdiguration  >>>>>>>>>>>>>>>>>>>>>-#} 
+interface Loopback {{ServiceID}}
+{%     if ansible_os == "IOS" -%}
+ ip vrf forwarding {{Customer}}-{{ServiceID}}
+ ip address {{( loopbacks | ipaddr (nodeid) | ipaddr ('address') )}}  255.255.255.255
+{%     elif ansible_os == "XR" -%}
+ vrf {{Customer}}-{{ServiceID}}
+ ipv4 address {{( loopbacks | ipaddr (nodeid) | ipaddr ('address') )}}  255.255.255.255
+{%     endif -%}
+!
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  Tunnel confdiguration  >>>>>>>>>>>>>>>>>>>>>>>-#}
+{% for T in TUNNELS -%}
+{#>???? Why cant magic variabes be accessed from macro ?????????????????????-#}
+{%     if T.from == inventory_hostname -%}
+{%         set RemTun = hostvars [ T.to ] ['nodeid'] -%}
+{{ MTun (Customer,ServiceID,OSPFarea,VRF,T.from,T.to,loop.index,RemTun) -}}
+!
+{%     elif T.to == inventory_hostname -%}
+{%         set RemTun = hostvars [ T.from ] ['nodeid'] -%}
+{{ MTun (Customer,ServiceID,OSPFarea,VRF,T.to,T.from,loop.index,RemTun) -}}
+!
+{%     endif %}
+{% endfor %}
+!
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  Interface confdiguration >>>>>>>>>>>>>>>>>>>>>>>#}
+{#T ODO Configure DHCP for this interface -#}
+{% for i in INTERFACES -%} 
+{%     if i.node == inventory_hostname -%}
+   {{ MSerInt (i.port,ServiceID,ServiceSN,OSPFarea,Customer,nodeid) }}
+{%     endif %}
+{% endfor %}
+!
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  Routing confdiguration  >>>>>>>>>>>>>>>>>>>>>>-#} 
+{% if ansible_os == "IOS" -%}
+{{ Mroute (loopbacks,nodeid,port,ServiceID,OSPFarea,VRF) }}
+
+{%    elif ansible_os == "XR" -%}
+{{ Mroute (loopbacks,nodeid,port,ServiceID,OSPFarea,VRF) }}
+{%    for T in TUNNELS -%} 
+{# TODO come back and sort ouut specific loop index this is ugly and wrong -#}
+   interface Tunnel-ip {{ServiceID}}{{loop.index}}
+{% endfor -%}
+{%    for i in INTERFACES -%} 
+{%     if i.node == inventory_hostname -%}
+!
+ interface {{i.port}}
+ network broadcast
+{% endif -%}
+{% endfor -%}
+{% endif -%}
+

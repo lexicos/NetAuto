@@ -1,0 +1,10 @@
+{#>>>>>>>>>>>>>>>>>>>>>>>>>>  Used by upstream Generate-services.j2 >>>>>>>>>>>>>>>>>>>>>>>-#}
+{%- macro MTun(Customer,ServiceID,OSPFa,VRF,from,to,loop,RemTun) -%}
+interface tunnel-ip {{ServiceID}}{{loop}}
+ description {{Customer}} {{ServiceID}} Tunnel to {{to}}
+ vrf {{Customer}}-{{ServiceID}}
+ ipv4 unnumbered Loopback {{ServiceID}}
+ tunnel mode gre ipv4
+ tunnel source Loopback0
+ tunnel destination 10.10.100.{{RemTun}}
+ {% endmacro %} 

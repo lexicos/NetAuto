@@ -1,0 +1,48 @@
+!
+vrf Gaffatape-20
+ address-family ipv4 unicast
+!
+!
+interface Loopback 20
+vrf Gaffatape-20
+ ipv4 address 172.16.1.50  255.255.255.255
+!
+interface tunnel-ip 201
+ description Gaffatape 20 Tunnel to BEL02.east.net
+ vrf Gaffatape-20
+ ipv4 unnumbered Loopback 20
+ tunnel mode gre ipv4
+ tunnel source Loopback0
+ tunnel destination 10.10.100.20
+ !
+interface tunnel-ip 203
+ description Gaffatape 20 Tunnel to SGP01.west.net
+ vrf Gaffatape-20
+ ipv4 unnumbered Loopback 20
+ tunnel mode gre ipv4
+ tunnel source Loopback0
+ tunnel destination 10.10.100.60
+ !
+!
+interface GigabitEthernet 0/0/0/7
+ vrf Gaffatape-20
+ ipv4 address 172.16.17.145 255.255.255.248
+ description Inteface for Gaffatape service 20
+!
+
+!
+router ospf 20
+ vrf Gaffatape-20
+ router-id 172.16.1.50
+ default-metric 1000
+ area 20
+  loopback stub-network enable
+  interface Loopback20
+ !
+
+interface Tunnel-ip 201
+interface Tunnel-ip 202
+interface Tunnel-ip 203
+!
+ interface GigabitEthernet 0/0/0/7
+ network broadcast
