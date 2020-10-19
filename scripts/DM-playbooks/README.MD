@@ -62,3 +62,7 @@ The **<em>Generate-services.yml</em>** playbook
 <H2> Services Data model Diagram </H2>
 
 ![Services-Data-Model](https://user-images.githubusercontent.com/17169238/95121085-70698200-0746-11eb-8983-9a90f610eec9.PNG)
+
+Pulling it together with a makefile
+
+![makefile](https://user-images.githubusercontent.com/17169238/96472509-77a18d00-1228-11eb-9a94-28354df524f4.PNG)
