@@ -60,11 +60,13 @@ The **<em>Generate-services.yml</em>** playbook
 <l1> Resulting files are stored in the configurations directory.</l1>
 
 <H2> Services Data model Diagram </H2>
-
+<p>
 ![Services-Data-Model](https://user-images.githubusercontent.com/17169238/95121085-70698200-0746-11eb-8983-9a90f610eec9.PNG)
 
-<H1> Pulling it together with a makefile <H1>
+<H1> Pulling it together with a makefile </H1>
+
 The following makefile brings together the 3 playbooks to create host vars followed by the device configuration and finally the service configuration. Each stage is only executed if the dependent files (Green \ delineated blocks below) have a modification date which is newer than the output file. The output file in this case acts as a simple timestamp file of when the stage was last run. 
 
 ![makefile](https://user-images.githubusercontent.com/17169238/96472509-77a18d00-1228-11eb-9a94-28354df524f4.PNG)
+
 TODO Come back and work out how to register the output files from Ansible to the mikefile manifest. 
