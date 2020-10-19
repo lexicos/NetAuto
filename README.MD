@@ -60,7 +60,7 @@ The **<em>Generate-services.yml</em>** playbook
 <l1> Resulting files are stored in the configurations directory.</l1>
 
 <H2> Services Data model Diagram </H2>
-<p>
+
 ![Services-Data-Model](https://user-images.githubusercontent.com/17169238/95121085-70698200-0746-11eb-8983-9a90f610eec9.PNG)
 
 <H1> Pulling it together with a makefile </H1>
