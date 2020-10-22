@@ -16,20 +16,20 @@ username {{u.username}} password 0 {{u.password}}
 !
 !
 {#>>>>>>>>>>>>>>>>>>>>>>>>>>  loopback confdiguration  >>>>>>>>>>>>>>>>>>>>>>>#} 
-interface loopback 0 
-{% if ansible_os == "XR" %}
- ipv4 address {{( loopbacks | ipaddr (nodeid) | ipaddr ('address') )}}  255.255.255.255
-{%     elif ansible_os == "IOS" -%} 
- ip address {{( loopbacks | ipaddr (nodeid) | ipaddr ('address') )}}  255.255.255.255
-{%-     endif %} 
-!
+{# interface loopback 0 
+{# {% if ansible_os == "XR" %}
+{#  ipv4 address {{( loopbacks | ipaddr (nodeid) | ipaddr ('address') )}}  255.255.255.255
+{# {%     elif ansible_os == "IOS" -%} 
+{#  ip address {{( loopbacks | ipaddr (nodeid) | ipaddr ('address') )}}  255.255.255.255
+{# {%-     endif %} 
+{# !
 {#>>>>>>>>>>>>>>>>>>>>>>>>>> XR SNMP confdiguration >>>>>>>>>>>>>>>>>>>>>>>>>>#}
 {%     if ansible_os == "XR" -%}
   {{ Msnmp (SNMP1,SNMP2,NMS1,NMS2) }}
 {%-     endif -%}  
 !
 {#>>>>>>>>>>>>>>>>>>>>>>>>>>  Interface confdiguration >>>>>>>>>>>>>>>>>>>>>>>#}
-{%   for l in links -%}
+{#{%   for l in links -%}
   {{ Minterface (l.port,l.ip,l.mask,l.description) }}
 {%   endfor %}
 !
@@ -50,4 +50,5 @@ interface {{l.port}}
   {{ Msnmp (SNMP1,SNMP2,NMS1,NMS2) }}
 {%-     endif -%}  
 !
-end 
+! BEGIN adding banners {{ nodeid }}
+! END adding banners {{ nodeid }}
