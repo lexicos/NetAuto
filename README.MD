@@ -1,3 +1,13 @@
+<H1> Branch Information </H1>
+This branch achieves the same as the master branch does with Jinja 2 templates but using blockinfile and loops. 
+Some drawbacks of the approach. 
+
+The block in file sections get overwritten upon loop unless a unique marker is used. This means that only the results from the last run are included in the output. This can be remediate by using “” marker which puts all the output at the end of the file. In this branch I worked around it by adding a for loop to the jinja template to create as many block in file elements as needed by the data structure using loop.index. This was mirrored in the blockinfile using the Index_Var field. Not pretty!
+
+The output includes the blockinfile markers with no simple way to remove them. It could be possible to write a J2 filter to remove them or a J2 python plugin. If they are this hard to remove maybe its not such a great idea. Will move on to assemble the code. 
+
+The code does not look great embedded in the script and reduces the ability to reuse it. Maybe its possible to pull in the block from a snippet like the J2 macro’s did.
+
 <H1> Infrastructure Data Model </H1>
 
 ![Topology](https://user-images.githubusercontent.com/17169238/95120967-46b05b00-0746-11eb-9cdd-753b4e936536.PNG)
