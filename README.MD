@@ -46,7 +46,7 @@ The **<em>Generate-Configurations.yml</em>** playbook
 
 <H2> Infrasturcture Data model Diagram </H2>
 
-![BlockinfileAndLoops](https://user-images.githubusercontent.com/17169238/97112830-74057e80-16de-11eb-9a3c-f76de09ce511.png)
+![Assemble](https://user-images.githubusercontent.com/17169238/101507530-8d047f00-396e-11eb-915c-376c469cad6d.png)
 
 <h1>Customer GRE Tunnel service</h1>
 This service is not optimal and better solutions exist to this problem but hey its just for practices. The service is a mesh of VPN tunnels between 3 of the nodes. The service configures the base elements such as VRF and routing instances for all nodes. Only 3 of the nodes however have customer access ports configured to align with the topology. 
