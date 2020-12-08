@@ -13,14 +13,6 @@ Generate-HostVars.at : \
 	>Generate-HostVars.at    #This must match the rule name above
 # Not sure why this cant be in a subdirectory
 
-Generated-Configurations.at : \
-		Generate-Configurations.yml \
-		templates/Generate-Configurations.j2 \
-		inventory/hosts.yml \
-		inventory/host_vars/* 
-	ansible-playbook Generate-Configurations.yml -i inventory/hosts.yml
-	>Generated-Configurations.at
-
 Generated-Services.at : \
 		Generate-Services.yml \
 		templates/Generate-Services.j2 \
@@ -29,10 +21,19 @@ Generated-Services.at : \
 	ansible-playbook Generate-Services.yml -i inventory/hosts.yml
 	>Generated-Services.at
 
+Generated-Configurations.at : \
+		Generate-Configurations.yml \
+		inventory/hosts.yml \
+		inventory/host_vars/
+	ansible-playbook Generate-Configurations.yml -i inventory/hosts.yml
+	>Generated-Configurations.at
+
+
 # This is only called with the make clean command
 clean :
 	echo "Cleaning up..."
-	rm configurations/*.*
-	rm inventory/host_vars/*.*
-	rm *.at
+	-rm configurations/assemble/*.*
+	-rm configurations/*.*
+	-rm inventory/host_vars/*.*
+	-rm *.at
 	
